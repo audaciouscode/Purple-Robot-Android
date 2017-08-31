@@ -58,3 +58,5 @@ freeline_project_description.json
 .idea/
 gradle.properties
 local.properties.*
+res/values/keys.xml
+

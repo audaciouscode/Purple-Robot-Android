@@ -14,7 +14,6 @@ import android.test.AndroidTestRunner;
 import edu.northwestern.cbits.purple_robot_manager.tests.models.MatlabForestModelTestCase;
 import edu.northwestern.cbits.purple_robot_manager.tests.models.MatlabTreeModelTestCase;
 import edu.northwestern.cbits.purple_robot_manager.tests.models.WekaTreeModelTestCase;
-import edu.northwestern.cbits.purple_robot_manager.tests.probes.FallNetProbeTestCase;
 import edu.northwestern.cbits.purple_robot_manager.tests.ui.NonAsciiDialogTestCase;
 import edu.northwestern.cbits.purple_robot_manager.tests.ui.NotificationTestCase;
 
@@ -47,7 +46,6 @@ public class RobotTestRunner extends AndroidTestRunner
         this._suite.addTest(new PurpleRobotHealthProbeTestCase(context, 8));
         this._suite.addTest(new HalfHourDateTriggerTestCase(context, 9));
         this._suite.addTest(new RandomDateTriggerTestCase(context, 10));
-        this._suite.addTest(new FallNetProbeTestCase(context, 11));
     }
 
     public List<TestCase> getTestCases(final Context context)
