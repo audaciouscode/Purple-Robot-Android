@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <ListView android:id="@+id/list_timestamps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <TextView android:id="@+id/placeholder_timestamps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/placeholder_timestamps"
+                android:padding="32dp"
+                android:visibility="gone"
+                android:gravity="center_vertical|center_horizontal"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_marginBottom="0dp"
+                android:layout_height="8dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/shadow_inverted" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_height="8dp"
+                android:layout_gravity="top"
+                android:background="@drawable/shadow" />
+        </FrameLayout>
+        <LinearLayout android:id="@+id/bar_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#212121"
+            android:padding="8dp">
+            <AutoCompleteTextView android:id="@+id/text_label_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:layout_marginRight="80dp"
+                android:hint="@string/hint_timestamp_name" />
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView android:id="@+id/create_button"
+        android:layout_width="90dp"
+        android:layout_height="89dp"
+        android:src="@drawable/button_add_timestamp"
+        android:layout_gravity="bottom|right"
+        android:paddingBottom="14dp"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp" />
+</FrameLayout>
+
+

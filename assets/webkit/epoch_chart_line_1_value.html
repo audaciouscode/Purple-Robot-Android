@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<script src="vendor/jquery.min.js"></script>
+		<script src="vendor/d3.v3.js"></script>
+		<script src="vendor/d3.layout.min.js"></script>
+		<script src="vendor/epoch.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="vendor/epoch.min.css" />
+		<style>
+			#chart {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				left: 0;
+			}
+		</style>
+		<script type="text/javascript">
+		    var chart = null;
+		    
+		    $(document).ready(function()
+		    {
+				var data = {{{ data_json }}};
+				
+				chart = $('#chart').epoch({ 
+					type: 'time.line', 
+					data: data,
+					windowSize: 180,
+					axes: ['right', 'bottom'],
+					ticks: { time: 30 },
+					tickFormats: { time: function(d) {
+					        console.log("D:" + d);
+					        
+							var date = new Date(d * 1000); 
+							var hour = date.getHours();
+							var minute = date.getMinute();
+							var second = date.getSeconds();
+						
+							hour = hour % 12;
+						
+							if (hour == 0)
+								hour = 12;
+							
+							if (minute < 10)
+							    minute = "0" + minute;
+						
+							if (second < 10)
+							    second = "0" + second;
+						
+							return hour + ":" + minute + ":" + second 
+						}
+					}
+				});
+			});
+			
+			function newData(x, y, z, t)
+			{
+				var x = { y: x, time: t };
+				
+				chart.push([x]);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="chart" class="epoch category10">
+		</div>
+	</body>
+</html>

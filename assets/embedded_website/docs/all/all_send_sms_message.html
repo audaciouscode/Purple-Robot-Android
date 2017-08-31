@@ -1,0 +1,28 @@
+<p>
+    Sends an SMS message.
+</p>
+
+<h4 class="code_arguments_label">Arguments</h4>
+
+<p>
+    <code>message</code>: String containing message to transmit.
+</p>
+
+<p>
+    <code>destination</code>: Phone destination for the message.
+    An empty string or <code>null</code> will send the message to the default SMS number.
+</p>
+
+<h4>Return Values</h4>
+
+<p><em>None</em></p>
+
+<h3 class="language_definition">JavaScript Example</h3>
+
+<pre id="javascript_example">PurpleRobot.sendSmsMessage("Hello world!", "8675309");
+PurpleRobot.sendSmsMessage("Hello world!");</pre>
+
+<h3 class="language_definition">Scheme Example</h3>
+
+<pre id="scheme_example">(pr-send-sms-message "Hello World!" "8675309")
+(pr-send-sms-message "Hello World!")</pre>

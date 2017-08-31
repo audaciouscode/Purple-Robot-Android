@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="config_settings_probe_category"
+        android:title="@string/config_probes_category_label" />
+    <PreferenceCategory
+        android:key="config_settings_trigger_category"
+        android:title="@string/config_triggers_category_label" />
+    <PreferenceCategory
+        android:key="config_settings_models_category"
+        android:title="@string/config_models_category_label" />
+    <PreferenceCategory android:title="@string/config_snapshots_category">
+    	<CheckBoxPreference
+	   	    android:title="@string/title_record_snapshot_audio"
+   		    android:summary="@string/summary_record_snapshot_audio"
+        	android:key="config_record_snapshot_audio"
+			android:defaultValue="false"/>
+	</PreferenceCategory>
+    <PreferenceCategory android:title="@string/config_notifications_category">
+        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+	        android:key="config_default_notification_sound"
+	        android:entries="@array/sound_effect_labels"
+	        android:entryValues="@array/sound_effect_values"
+	        android:title="@string/config_notification_sound_label"
+	        android:summary="@string/config_notification_sound_summary"
+	        android:defaultValue="@string/value_zero" />
+        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+            android:key="config_json_haptic_pattern"
+            android:entries="@array/vibrator_pattern_labels"
+            android:entryValues="@array/vibrator_pattern_values"
+            android:title="@string/config_vibrator_pattern_label"
+            android:summary="@string/config_vibrator_pattern_message"
+            android:defaultValue="@string/value_sixty" />
+    	<CheckBoxPreference
+	   	    android:title="@string/config_mute_warnings"
+   		    android:summary="@string/summary_mute_warnings"
+        	android:key="config_mute_warnings"
+			android:defaultValue="false"/>
+        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+            android:key="config_dialog_count"
+            android:entries="@array/dialog_count_labels"
+            android:entryValues="@array/dialog_count_values"
+            android:title="@string/config_dialog_count_label"
+            android:summary="@string/config_dialog_count_message"
+            android:defaultValue="@string/value_four" />
+	</PreferenceCategory>
+    <PreferenceCategory android:title="@string/config_application_category">
+    	<CheckBoxPreference
+	   	    android:title="@string/config_show_background"
+   		    android:summary="@string/summary_show_background"
+        	android:key="config_show_background"
+			android:defaultValue="true"/>
+		<edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+			android:key="config_auto_app_launch"
+			android:entries="@array/launch_app_labels"
+			android:entryValues="@array/launch_app_values"
+			android:title="@string/config_launch_app_label"
+			android:summary="@string/config_launch_app_message"
+			android:defaultValue="@string/value_never" />
+    	<!-- <CheckBoxPreference
+	   	    android:title="@string/config_hockey_update"
+   		    android:summary="@string/summary_hockey_update"
+        	android:key="config_hockey_update"
+      		android:defaultValue="false"/> -->
+   		</PreferenceCategory>
+    <PreferenceCategory android:title="@string/config_network_category">
+    	<PreferenceScreen android:title="@string/title_shared_upload_section"
+    	    android:summary="@string/summary_shared_upload_section">
+ 	        <CheckBoxPreference
+	  	   	    android:title="@string/title_external_storage_enabled"
+	      	    android:summary="@string/summary_external_storage_enabled"
+	          	android:key="config_external_storage"
+	          	android:defaultValue="false"/>
+	      	<CheckBoxPreference
+	      	    android:title="@string/title_http_encrypt"
+      		    android:summary="@string/summary_http_encrypt"
+	        	android:key="config_http_encrypt"
+	           	android:defaultValue="true"/>
+	      	<CheckBoxPreference
+	      	    android:title="@string/title_http_liberal_ssl"
+      		    android:summary="@string/summary_http_liberal_ssl"
+	        	android:key="config_http_liberal_ssl"
+	           	android:defaultValue="true"/>
+			<edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleEditTextPreference
+	           	android:key="config_data_server_uri"
+	           	android:inputType="textUri|textMultiLine"
+	           	android:title="@string/title_http_upload_uri"
+	           	android:dialogTitle="@string/title_http_upload_uri"
+	           	android:dialogMessage="@string/summary_http_upload_uri"
+	           	android:summary="@string/summary_http_upload_uri"
+	           	android:defaultValue="@string/sensor_upload_url" />
+            <CheckBoxPreference
+                android:title="@string/title_http_upload_wifi_only"
+                android:summary="@string/summary_http_upload_wifi_only"
+                android:key="config_restrict_data_wifi"
+                android:defaultValue="false"/>
+            <CheckBoxPreference
+                android:title="@string/title_upload_charging_only"
+                android:summary="@string/summary_upload_charging_only"
+                android:key="config_restrict_data_charging"
+                android:defaultValue="false"/>
+			<CheckBoxPreference
+				android:title="@string/title_archive_enabled"
+				android:summary="@string/summary_archive_enabled"
+				android:key="config_http_archive"
+				android:defaultValue="false"/>
+		</PreferenceScreen>
+		<PreferenceScreen android:title="@string/title_http_upload_section"
+		    android:summary="@string/summary_http_upload_section">
+			<CheckBoxPreference
+				android:title="@string/title_http_upload_enabled"
+	           	android:key="config_enable_data_server"
+	           	android:defaultValue="false"/>
+	        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+	            android:key="config_http_upload_interval"
+	            android:entries="@array/http_upload_interval_labels"
+	            android:entryValues="@array/http_upload_interval_values"
+	            android:title="@string/config_http_upload_interval_label"
+	            android:summary="@string/config_http_upload_interval_summary"
+	            android:defaultValue="@string/value_zero" />
+	        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+	            android:key="config_http_upload_size"
+	            android:entries="@array/http_upload_size_labels"
+	            android:entryValues="@array/http_upload_size_values"
+	            android:title="@string/config_http_upload_size_label"
+	            android:summary="@string/config_http_upload_size_summary"
+	            android:defaultValue="@string/value_zero" />
+  			<PreferenceScreen android:title="@string/title_advanced_settings">
+				<Preference android:title="@string/title_email_files" android:key="config_mail_archives" android:defaultValue="@string/value_zero" />
+				<Preference android:title="@string/title_delete_files" android:key="config_delete_archives" android:defaultValue="@string/value_zero" />
+ 			</PreferenceScreen>
+ 		</PreferenceScreen>
+    	<PreferenceScreen android:title="@string/title_streaming_jackson_upload_section"
+    	    android:summary="@string/summary_streaming_jackson_upload_section">
+			<CheckBoxPreference
+				android:title="@string/title_streaming_jackson_upload_enabled"
+	           	android:key="config_enable_streaming_jackson_data_server"
+	           	android:defaultValue="false"/>
+	        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+	            android:key="config_streaming_jackson_upload_interval"
+	            android:entries="@array/streaming_jackson_upload_interval_labels"
+	            android:entryValues="@array/streaming_jackson_upload_interval_values"
+	            android:title="@string/config_streaming_jackson_upload_interval_label"
+	            android:summary="@string/config_streaming_jackson_upload_interval_summary"
+	            android:defaultValue="@string/value_300" />
+	        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+	            android:key="config_streaming_jackson_upload_size"
+	            android:entries="@array/streaming_jackson_upload_size_labels"
+	            android:entryValues="@array/streaming_jackson_upload_size_values"
+	            android:title="@string/config_streaming_jackson_upload_size_label"
+	            android:defaultValue="@string/value_256k" />
+			<CheckBoxPreference
+				android:key="config_streaming_jackson_enable_buffer"
+				android:title="@string/config_streaming_jackson_enable_buffer_label"
+				android:summary="@string/config_streaming_jackson_enable_buffer_summary"
+				android:defaultValue="false" />
+			<edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+				android:key="config_streaming_jackson_buffer_duration"
+				android:entries="@array/streaming_jackson_buffer_duration_labels"
+				android:entryValues="@array/streaming_jackson_buffer_duration_values"
+				android:title="@string/config_streaming_jackson_buffer_duration_label"
+				android:defaultValue="@string/value_15min" />
+		</PreferenceScreen>
+        <PreferenceScreen android:title="@string/title_builtin_http_server_section"
+			android:key="screen_builtin_http_server">
+            <CheckBoxPreference
+                android:title="@string/title_builtin_http_server_enabled"
+                android:summary="@string/summary_builtin_http_server_enabled"
+                android:key="config_enable_builtin_http_server"
+                android:defaultValue="true"/>
+            <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleEditTextPreference
+                android:key="config_builtin_http_server_password"
+                android:inputType="textWebPassword"
+                android:title="@string/title_builtin_http_server_password"
+                android:dialogTitle="@string/title_builtin_http_server_password"
+                android:dialogMessage="@string/summary_builtin_http_server_password"
+                android:summary="@string/summary_builtin_http_server_password"  />
+
+			<CheckBoxPreference
+				android:title="@string/title_builtin_http_server_zeroconf_enabled"
+				android:summary="@string/summary_builtin_http_server_zeroconf_enabled"
+				android:key="config_builtin_http_server_zeroconf"
+				android:defaultValue="false"/>
+			<edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleEditTextPreference
+				android:key="config_builtin_http_server_zeroconf_name"
+				android:inputType="text"
+				android:title="@string/title_builtin_http_server_zeroconf_name"
+				android:dialogTitle="@string/title_builtin_http_server_zeroconf_name"
+				android:dialogMessage="@string/summary_builtin_http_server_zeroconf_name"
+				android:summary="@string/summary_builtin_http_server_zeroconf_name" />
+        </PreferenceScreen>
+		<PreferenceScreen android:title="@string/title_log_upload_section">
+			<CheckBoxPreference
+				android:title="@string/logging_enabled"
+	           	android:summary="@string/summary_logging_enabled"
+	           	android:key="config_enable_log_server"
+	           	android:defaultValue="false"/>
+			<edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleEditTextPreference
+	           	android:key="config_log_server_uri"
+	           	android:inputType="textUri|textMultiLine"
+	           	android:title="@string/title_log_upload_uri"
+	           	android:dialogTitle="@string/title_http_upload_uri"
+	           	android:dialogMessage="@string/summary_log_upload_uri"
+	           	android:summary="@string/summary_log_upload_uri"
+	           	android:defaultValue="@string/log_upload_url" />
+	     	<CheckBoxPreference
+	      	    android:title="@string/title_log_location"
+	      	    android:summary="@string/summary_log_location"
+	           	android:key="config_log_location"
+	           	android:defaultValue="false"/>
+            <CheckBoxPreference
+                android:title="@string/title_log_upload_wifi_only"
+                android:summary="@string/summary_log_upload_wifi_only"
+                android:key="config_restrict_log_wifi"
+                android:defaultValue="true"/>
+            <CheckBoxPreference
+                android:title="@string/title_log_upload_charging_only"
+                android:summary="@string/summary_log_upload_charging_only"
+                android:key="config_restrict_log_charging"
+                android:defaultValue="false"/>
+	     	<CheckBoxPreference
+	      	    android:title="@string/title_log_heartbeat"
+	      	    android:summary="@string/summary_log_heartbeat"
+	           	android:key="config_log_heartbeat"
+	           	android:defaultValue="false"/>
+	        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+	            android:key="config_log_upload_interval"
+	            android:entries="@array/log_upload_interval_labels"
+	            android:entryValues="@array/log_upload_interval_values"
+	            android:title="@string/config_log_upload_interval_label"
+	            android:summary="@string/config_log_upload_interval_summary"
+	            android:defaultValue="@string/value_600" />
+			<edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+				android:key="config_log_level"
+				android:entries="@array/config_log_level_labels"
+				android:entryValues="@array/config_log_values"
+				android:title="@string/config_log_level_title"
+				android:defaultValue="@string/value_label_debug" />
+   		<Preference android:title="@string/config_upload_logs"
+            android:key="config_log_refresh_manually"
+            android:defaultValue="@string/value_zero" />
+        </PreferenceScreen>
+	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/config_settings_security">
+        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+            android:key="config_preferred_hash_function"
+            android:entries="@array/hash_function_labels"
+            android:entryValues="@array/hash_function_values"
+            android:title="@string/config_preferred_hash_function_label"
+            android:summary="@string/config_preferred_hash_function_message"
+            android:defaultValue="@string/hash_function_md5" />
+    </PreferenceCategory>
+	<PreferenceCategory android:title="@string/config_settings_category">
+        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleEditTextPreference
+            android:key="config_user_id"
+            android:title="@string/config_user_id_label"
+            android:dialogTitle="@string/config_user_id_title"
+            android:dialogMessage="@string/config_user_id_message" />
+        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleEditTextPreference
+          	android:inputType="textWebPassword"
+            android:key="config_password"
+            android:title="@string/config_password_label"
+            android:dialogTitle="@string/config_password_title"
+            android:dialogMessage="@string/config_password_message" />
+        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleEditTextPreference
+            android:key="config_json_url"
+          	android:inputType="textUri|textMultiLine"
+            android:title="@string/config_json_url_label"
+            android:dialogMessage="@string/config_json_url_message"  />
+        <edu.northwestern.cbits.purple_robot_manager.activities.settings.FlexibleListPreference
+            android:key="config_json_refresh_interval"
+            android:entries="@array/json_refresh_interval_labels"
+            android:entryValues="@array/json_refresh_interval_values"
+            android:title="@string/config_json_refresh_interval_label"
+            android:summary="@string/config_json_refresh_interval_message"
+            android:defaultValue="@string/value_3600" />
+     	<CheckBoxPreference
+      	    android:title="@string/title_config_check"
+      	    android:summary="@string/summary_config_check"
+           	android:key="check_scheme_config"
+           	android:defaultValue="true"/>
+   		<Preference android:title="@string/config_refresh_json_label"
+            android:key="config_json_refresh_manually"
+            android:defaultValue="@string/value_zero" />
+   		<Preference android:title="@string/config_reset_label"
+            android:summary="@string/config_reset_summary"
+            android:key="config_reset"
+            android:defaultValue="@string/value_zero" />
+	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/title_acknowledgements_section">
+		<PreferenceScreen android:title="@string/title_third_party_libraries">
+	   		<Preference android:title="@string/title_third_actionbarsherlock"
+	   		    android:summary="@string/summary_third_actionbarsherlock">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_actionbarsherlock" />
+	        </Preference>
+	   		<Preference android:title="@string/title_third_rhino"
+	   		    android:summary="@string/summary_third_rhino">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_rhino" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_ical"
+	   		    android:summary="@string/summary_third_ical">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_ical" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_hockeyapp"
+	   		    android:summary="@string/summary_third_hockeyapp">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_hockeyapp" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_commons"
+	   		    android:summary="@string/summary_third_commons">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_commons" />
+	        </Preference>
+	       	<Preference android:title="@string/title_third_backport"
+	   		    android:summary="@string/summary_third_backport">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_backport" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_jscheme"
+	   		    android:summary="@string/summary_third_jscheme">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_jscheme" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_jquery"
+	   		    android:summary="@string/summary_third_jquery">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_jquery" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_qunit"
+	   		    android:summary="@string/summary_third_qunit">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_qunit" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_d3"
+	   		    android:summary="@string/summary_third_d3">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_d3" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_rickshaw"
+	   		    android:summary="@string/summary_third_rickshaw">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_rickshaw" />
+	        </Preference>
+   	        <Preference android:title="@string/title_third_datejs"
+	   		    android:summary="@string/summary_third_datejs">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_datejs" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_pregexpscm"
+	   		    android:summary="@string/summary_third_pregexpscm">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_pregexpscm" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_underscore"
+	   		    android:summary="@string/summary_third_underscore">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_underscore" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_jstat"
+	   		    android:summary="@string/summary_third_jstat">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_jstat" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_beautifier"
+	   		    android:summary="@string/summary_third_beautifier">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_beautifier" />
+	        </Preference>
+	        <Preference android:title="@string/title_third_gson"
+	   		    android:summary="@string/summary_third_gson">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_gson" />
+	        </Preference>
+   	        <Preference android:title="@string/title_third_jmdns"
+	   		    android:summary="@string/summary_third_jmdns">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_jmdns" />
+	        </Preference>
+   	        <Preference android:title="@string/title_third_jsoup"
+	   		    android:summary="@string/summary_third_jsoup">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_jsoup" />
+	        </Preference>
+   	        <Preference android:title="@string/title_third_mixpanel"
+	   		    android:summary="@string/summary_third_mixpanel">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_mixpanel" />
+	        </Preference>
+   	        <Preference android:title="@string/title_third_sunrise"
+	   		    android:summary="@string/summary_third_sunrise">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_third_sunrise" />
+	        </Preference>
+   	        <Preference android:title="@string/title_slugify"
+	   		    android:summary="@string/summary_slugify">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_slugify" />
+	        </Preference>
+   	        <Preference android:title="@string/title_epoch"
+	   		    android:summary="@string/summary_epoch">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_epoch" />
+	        </Preference>
+   	        <Preference android:title="@string/title_moment"
+	   		    android:summary="@string/summary_moment">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_moment" />
+	        </Preference>
+   	        	   	</PreferenceScreen>
+		<PreferenceScreen android:title="@string/title_funders">
+	   		<Preference android:title="@string/title_funder_nih"
+	   		    android:summary="@string/summary_funder_nih">
+		        <intent android:action="android.intent.action.VIEW" android:data="@string/url_funder_nih" />
+	        </Preference>
+		</PreferenceScreen>
+	</PreferenceCategory>
+    <PreferenceCategory android:title="@string/config_special_category">
+		<!-- <Preference android:title="@string/title_mail_app_schema"
+	    	android:key="config_dump_json">
+        </Preference> -->
+		<Preference android:title="@string/title_run_tests"	android:key="config_run_tests" />
+		<PreferenceScreen android:title="@string/title_export_content">
+			<Preference android:title="@string/title_export_bootstrap_site" android:key="config_export_bootstrap" />
+			<Preference android:title="@string/title_export_jekyll_site" android:key="config_export_jekyll" />
+		</PreferenceScreen>
+	</PreferenceCategory>
+</PreferenceScreen>

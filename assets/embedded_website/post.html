@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<title>Test Interface | Purple Robot</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	</head>
+	<body style="margin: 1em; font-family: Roboto, 'Droid Sans', sans-serif; overflow-y: scroll; overflow-x: hidden;">
+		<form>
+			<center>
+				<div style="width: 90%; text-align: left;">
+					<p>
+						<strong>Encrypt</strong><br />
+						<input type="text" name="encrypt" value="true" style="width: 100%; text-align: left;"><br />
+						Encrypts the value if <code>true</code>, plaintext otherwise.
+					</p>
+					<p>
+						<strong>Namespace</strong><br />
+						<input type="text" name="namespace" value="" style="width: 100%; text-align: left;"><br />
+						Leave empty to store in the default namespace.
+					</p>
+					<p>
+						<strong>Key</strong><br />
+						<input type="text" name="key" value="" style="width: 100%; text-align: left;">
+					</p>
+					<p>
+						<strong>Value</strong><br />
+						<input type="text" name="value" value="" style="width: 100%; text-align: left;">
+					</p>
+				</div>
+				<br />
+				<button style="width: 85%; margin-top: 1em; margin-bottom: 1em; padding: 1em;" onclick="post(); return false;">
+					<strong>Persist</strong>
+				</button>
+			</center>
+		</form>
+		<script>
+			function post() {
+				var params = {
+					encrypt: document.getElementsByName("encrypt")[0].value,
+					namespace: document.getElementsByName("namespace")[0].value
+				};
+			
+				var key = document.getElementsByName("key")[0].value;
+				var value = document.getElementsByName("value")[0].value;
+			
+				params[key] = value;
+
+				var form = document.createElement("form");
+    			form.setAttribute("method", "post");
+    			form.setAttribute("action", "/store");
+
+    			for(var key in params) {
+        			if(params.hasOwnProperty(key)) {
+            			var hiddenField = document.createElement("input");
+	            		hiddenField.setAttribute("type", "hidden");
+    	        		hiddenField.setAttribute("name", key);
+        	    		hiddenField.setAttribute("value", params[key]);
+
+		    	        form.appendChild(hiddenField);
+        			}
+	    		}
+
+			    document.body.appendChild(form);
+    			form.submit();
+			}
+		</script>
+	</body>
+</html>

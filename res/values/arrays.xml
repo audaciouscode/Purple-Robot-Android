@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<array name="js_feature_files">
+        <item>random_int.js</item>
+    </array>
+
+	<array name="js_feature_names">
+        <item>JavaScript Randomness</item>
+    </array>
+
+   	<array name="probe_classes">
+        <item>builtin.AccelerometerProbe</item>
+        <item>builtin.AddressBookDistancesProbe</item>
+        <item>builtin.BatteryProbe</item>
+        <item>builtin.BluetoothDevicesProbe</item>
+        <item>builtin.CallStateProbe</item>
+        <item>builtin.CommunicationLogProbe</item>
+        <item>builtin.CommunicationEventProbe</item>
+        <item>builtin.DateCalendarProbe</item>
+        <item>builtin.GyroscopeProbe</item>
+        <item>builtin.HardwareInformationProbe</item>
+        <item>builtin.LightProbe</item>
+        <item>builtin.LocationProbe</item>
+        <item>builtin.MagneticFieldProbe</item>
+        <item>builtin.PressureProbe</item>
+        <item>builtin.ProximityProbe</item>
+        <item>builtin.NetworkProbe</item>
+        <item>builtin.RobotHealthProbe</item>
+        <item>builtin.RunningSoftwareProbe</item>
+        <item>builtin.ScreenProbe</item>
+        <item>builtin.SoftwareInformationProbe</item>
+        <item>builtin.TelephonyProbe</item>
+        <item>builtin.TemperatureProbe</item>
+        <item>builtin.VisibleSatelliteProbe</item>
+        <item>builtin.WifiAccessPointsProbe</item>
+        <item>builtin.AudioFeaturesProbe</item>
+        <item>builtin.ApplicationLaunchProbe</item>
+        
+        <item>features.DeviceInUseFeature</item>
+        <item>features.CallHistoryFeature</item>
+        <item>features.SunriseSunsetFeature</item>
+        <item>features.AccelerometerBasicStatisticsFeature</item>
+        <item>features.GyroscopeBasicStatisticsFeature</item>
+        <item>features.MagneticFieldBasicStatisticsFeature</item>
+        <item>features.LightProbeBasicStatisticsFeature</item>
+        <item>features.PressureProbeBasicStatisticsFeature</item>
+        <item>features.ProximityProbeBasicStatisticsFeature</item>
+        <item>features.TemperatureProbeBasicStatisticsFeature</item>
+
+        <item>services.iHealthProbe</item>
+        <item>services.FitbitProbe</item>
+        <item>services.FitbitBetaProbe</item>
+        <item>services.JawboneProbe</item>
+        <item>services.GitHubProbe</item>
+        <item>services.TwitterProbe</item>
+        <item>services.InstagramProbe</item>
+        <item>services.FoursquareProbe</item>
+        <!-- <item>services.FacebookProbe</item> -->
+        <!-- <item>services.FacebookEventsProbe</item> -->
+        <item>services.GooglePlacesProbe</item>
+        <item>services.WeatherUndergroundProbe</item>
+
+        <item>builtin.RandomNoiseProbe</item>
+        <item>builtin.NfcProbe</item>
+   		<!-- <item>sample.SampleProbe</item> -->
+		<!-- <item>features.p20.P20FeaturesProbe</item> -->
+		
+        <item>features.AccelerometerFrequencyFeature</item>
+        
+        <item>LabelProbe</item>
+
+        <item>builtin.GravityProbe</item>
+        <item>builtin.StepCounterProbe</item>
+        <item>builtin.LinearAccelerationProbe</item>
+        <item>builtin.RotationProbe</item>
+        <item>builtin.GeomagneticRotationProbe</item>
+        <item>builtin.AmbientHumidityProbe</item>
+        <item>builtin.ActivityDetectionProbe</item>
+        <item>builtin.SignificantMotionProbe</item>
+
+        <item>builtin.RawLocationProbe</item>
+        <item>builtin.FusedLocationProbe</item>
+        <item>builtin.MediaRouterDeviceProbe</item>
+        <item>builtin.ShionProbe</item>
+        <item>builtin.SaintProbe</item>
+
+        <item>devices.PebbleProbe</item>
+        <item>devices.AndroidWearProbe</item>
+        <item>devices.wear.WearLightProbe</item>
+        <item>devices.wear.WearBatteryProbe</item>
+        <item>devices.wear.WearLivewellActivityCountProbe</item>
+        <item>devices.wear.WearHeartRateProbe</item>
+        <item>devices.wear.WearAccelerometerProbe</item>
+        <item>devices.wear.WearGyroscopeProbe</item>
+        <item>devices.wear.WearMagneticFieldProbe</item>
+
+        <item>sensors.AccelerometerSensorProbe</item>
+        <item>sensors.LightSensorProbe</item>
+
+        <item>builtin.TouchEventsProbe</item>
+        <!-- <item>builtin.BluetoothReceiverProbe</item> -->
+        <!-- <item>builtin.ZeroconfProbe</item> -->
+
+        <item>studies.LivewellActivityCountsProbe</item>
+        <item>studies.LivewellPebbleActivityCountsProbe</item>
+
+        <item>builtin.WakeLockInformationProbe</item>
+        <item>media.AudioCaptureProbe</item>
+    </array>
+
+	<array name="output_plugin_classes">
+        <!-- <item>LogCatOutputPlugin</item> -->
+        <item>TriggerOutputPlugin</item>
+        <item>AppDisplayPlugin</item>
+        <!-- <item>DiagnosticAppDisplayPlugin</item> -->
+        <item>HttpUploadPlugin</item>
+        <!-- <item>StreamingJSONUploadPlugin</item> -->
+        <item>StreamingJacksonUploadPlugin</item>
+        <item>JavascriptFeaturePlugin</item>
+    </array>
+
+	<string-array name="probe_boolean_labels">
+        <item>Yes</item>
+        <item>No</item>
+   	</string-array>
+
+	<string-array name="probe_boolean_values">
+        <item>true</item>
+        <item>false</item>
+    </string-array>
+
+	<string-array name="probe_duration_values">
+        <item>5</item>
+        <item>15</item>
+        <item>60</item>
+        <item>120</item>
+   	</string-array>
+
+	<string-array name="probe_duration_labels">
+        <item>5 seconds</item>
+        <item>15 seconds</item>
+        <item>1 minute</item>
+       	<item>2 minutes</item>
+    </string-array>
+
+    <string-array name="probe_duration_with_none_values">
+        <item>0</item>
+        <item>5</item>
+        <item>15</item>
+        <item>60</item>
+        <item>120</item>
+    </string-array>
+
+    <string-array name="probe_duration_with_none_labels">
+        <item>Continuous</item>
+        <item>5 seconds</item>
+        <item>15 seconds</item>
+        <item>1 minute</item>
+        <item>2 minutes</item>
+    </string-array>
+
+    <string-array name="frequency_probe_duration_values">
+        <item>0</item>
+        <item>5</item>
+        <item>15</item>
+        <item>60</item>
+        <item>120</item>
+   	</string-array>
+
+	<string-array name="frequency_probe_duration_labels">
+        <item>Continuous</item>
+        <item>5 seconds</item>
+        <item>15 seconds</item>
+        <item>1 minute</item>
+       	<item>2 minutes</item>
+    </string-array>
+	
+	<string-array name="probe_period_values">
+        <item>5</item>
+        <item>10</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>300</item>
+        <item>600</item>
+        <item>1200</item>
+        <item>1800</item>
+        <item>3600</item>
+	</string-array>
+
+	<string-array name="probe_period_labels">
+        <item>5 seconds</item>
+        <item>10 seconds</item>
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>3 minutes</item>
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>20 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+    </string-array>
+
+   	<array name="app_package_keys">
+        <item>Chrome</item>
+        <item>Facebook</item>
+        <item>Heart1</item>
+        <item>Heart2</item>
+        <item>Heart3</item>
+    </array>
+	<array name="app_package_values">
+        <item>com.android.chrome</item>
+        <item>com.facebook.katana</item>
+        <item>com.cbits.heart1</item>
+        <item>com.cbits.heart2</item>
+        <item>com.cbits.heart3</item>
+    </array>
+
+	<string-array name="json_refresh_interval_values">
+        <item>10</item>
+        <item>30</item>
+        <item>60</item>
+        <item>300</item>
+        <item>600</item>
+        <item>900</item>
+        <item>1800</item>
+        <item>3600</item>
+        <item>-1</item>
+    </string-array>
+
+	<string-array name="json_refresh_interval_labels">
+        <item>10 seconds</item>
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>Never</item>
+   	</string-array>
+
+	<string-array name="vibrator_pattern_values">
+        <item>vibrator_blip</item>
+        <item>vibrator_buzz</item>
+   	    <item>vibrator_sos</item>
+    </string-array>
+	<string-array name="vibrator_pattern_labels">
+        <item>Blip</item>
+        <item>Buzz</item>
+   	    <item>S.O.S.</item>
+    </string-array>
+
+	<integer-array name="vibrator_blip">
+        <item>0</item>
+        <item>100</item>
+        <item>1000</item>
+    </integer-array>
+
+	<integer-array name="vibrator_buzz">
+        <item>0</item>
+        <item>1000</item>
+        <item>100</item>
+    </integer-array>
+
+	<integer-array name="vibrator_sos">
+        <item>0</item>
+        <item>200</item>
+        <item>200</item>
+        <item>200</item>
+        <item>200</item>
+        <item>200</item>
+        <item>500</item>
+        <item>500</item>
+        <item>200</item>
+        <item>500</item>
+        <item>200</item>
+        <item>500</item>
+        <item>500</item>
+        <item>200</item>
+        <item>200</item>
+        <item>200</item>
+        <item>200</item>
+        <item>200</item>
+        <item>1000</item>
+	</integer-array>
+
+	<string-array name="probe_continuous_frequency_labels">
+        <item>Fastest</item>
+        <item>Fast (Game)</item>
+        <item>Slow (UI)</item>
+        <item>Slowest (Normal)</item>
+   	</string-array>
+	
+	<string-array name="probe_continuous_frequency_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+   	</string-array>
+
+    <string-array name="probe_livewell_wear_bin_values">
+        <item>10</item>
+        <item>30</item>
+        <item>60</item>
+        <item>300</item>
+        <item>600</item>
+    </string-array>
+
+    <string-array name="probe_livewell_wear_bin_labels">
+        <item>10 seconds</item>
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+    </string-array>
+
+	<string-array name="probe_acceleration_frequency_labels">
+        <item>200 per second</item>
+        <item>100 per second</item>
+        <item>50 per second</item>
+        <item>30 per second</item>
+        <item>20 per second</item>
+        <item>10 per second</item>
+        <item>5 per second</item>
+        <item>2 per second</item>
+        <item>1 per second</item>
+        <item>Every 5 seconds</item>
+        <item>Every 10 seconds</item>
+	</string-array>
+
+	<string-array name="probe_acceleration_frequency_values">
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>5000</item>
+        <item>10000</item>
+   	</string-array>
+	
+	<string-array name="probe_builtin_frequency_values">
+        <item>100</item>
+        <item>200</item>
+        <item>5000</item>
+        <item>1000</item>
+        <item>5000</item>
+        <item>10000</item>
+   	</string-array>
+
+	<string-array name="probe_builtin_frequency_labels">
+        <item>10 per second</item>
+        <item>5 per second</item>
+        <item>2 per second</item>
+        <item>1 per second</item>
+        <item>Every 5 seconds</item>
+        <item>Every 10 seconds</item>
+	</string-array>
+
+	<string-array name="probe_satellite_frequency_values">
+        <item>60000</item>
+        <item>300000</item>
+        <item>600000</item>
+        <item>1800000</item>
+ 	</string-array>
+
+	<string-array name="probe_activity_recognition_frequency_values">
+        <item>0</item>
+        <item>1000</item>
+	    <item>2000</item>
+	    <item>5000</item>
+	    <item>10000</item>
+	    <item>30000</item>
+  	  	<item>60000</item>
+        <item>300000</item>
+        <item>600000</item>
+        <item>1800000</item>
+ 	</string-array>
+
+	<string-array name="probe_activity_recognition_frequency_labels">
+        <item>Fastest</item>
+	    <item>1 second</item>
+        <item>2 seconds</item>
+	    <item>5 seconds</item>
+	    <item>10 seconds</item>
+	    <item>30 seconds</item>
+	    <item>Every 5 minutes</item>
+        <item>Every 30 minutes</item>
+        <item>Every hour</item>
+        <item>Every 4 hours</item>
+        <item>Every 12 hours</item>
+        <item>Every day</item>
+   	</string-array>
+
+    <string-array name="probe_sample_frequency_labels">
+        <item>Every minute</item>
+        <item>Every 5 minutes</item>
+        <item>Every 30 minutes</item>
+        <item>Every hour</item>
+    </string-array>
+
+    <string-array name="probe_sample_frequency_values">
+        <item>60000</item>
+        <item>300000</item>
+        <item>600000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+    </string-array>
+
+
+    <string-array name="probe_low_frequency_labels">
+        <item>Every minute</item>
+        <item>Every 5 minutes</item>
+        <item>Every 30 minutes</item>
+        <item>Every hour</item>
+        <item>Every 4 hours</item>
+        <item>Every 12 hours</item>
+        <item>Every day</item>
+    </string-array>
+
+	<string-array name="probe_low_frequency_values">
+        <item>60000</item>
+        <item>300000</item>
+        <item>600000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>14400000</item>
+        <item>43200000</item>
+        <item>86400000</item>
+   	</string-array>
+
+	<string-array name="probe_satellite_frequency_labels">
+        <item>Every minute</item>
+        <item>Every 5 minutes</item>
+        <item>Every 10 minutes</item>
+        <item>Every 30 minutes</item>
+	</string-array>
+
+	<string-array name="probe_rotation_threshold">
+        <item>0.0</item>
+        <item>15.0</item>
+        <item>30.0</item>
+        <item>45.0</item>
+   	</string-array>
+
+	<string-array name="probe_rotation_threshold_labels">
+        <item>None</item>
+        <item>15&#176;</item>
+        <item>30&#176;</item>
+        <item>45&#176;</item>
+	</string-array>
+	
+	<string-array name="probe_accelerometer_threshold">
+        <item>0.0</item>
+        <item>0.25</item>
+        <item>0.5</item>
+        <item>1.0</item>
+   	</string-array>
+
+	<string-array name="probe_accelerometer_threshold_labels">
+        <item>None</item>
+        <item>0.25 meters/second squared</item>
+        <item>0.5 meters/second squared</item>
+        <item>1 meter/second squared</item>
+	</string-array>
+	
+	<string-array name="probe_gyroscope_threshold">
+        <item>0.0</item>
+        <item>0.0025</item>
+   	</string-array>
+
+	<string-array name="probe_gyroscope_threshold_labels">
+        <item>None</item>
+        <item>2.5 milliradians per second</item>
+	</string-array>
+
+	<string-array name="probe_light_threshold">
+        <item>0.0</item>
+        <item>5.0</item>
+        <item>10.0</item>
+   	</string-array>
+
+	<string-array name="probe_light_threshold_labels">
+        <item>None</item>
+        <item>5 SI lux</item>
+        <item>10SI lux</item>
+   	</string-array>
+			
+	<string-array name="probe_magnetic_threshold">
+        <item>0.0</item>
+        <item>1.0</item>
+   	</string-array>
+
+	<string-array name="probe_magnetic_threshold_labels">
+        <item>None</item>
+        <item>1.0 micro-Tesla</item>
+   	</string-array>
+
+	<string-array name="probe_pressure_threshold">
+        <item>0.0</item>
+        <item>0.5</item>
+        <item>1.0</item>
+   	</string-array>
+
+	<string-array name="probe_pressure_threshold_labels">
+        <item>None</item>
+        <item>0.5 millibars</item>
+        <item>1 millibar</item>
+   	</string-array>
+
+	<string-array name="probe_proximity_threshold">
+        <item>0.0</item>
+        <item>1.0</item>
+        <item>2.0</item>
+        <item>5.0</item>
+   	</string-array>
+
+	<string-array name="probe_proximity_threshold_labels">
+        <item>None</item>
+        <item>1 centimeter</item>
+        <item>2 centimeters</item>
+        <item>5 centimeters</item>
+   	</string-array>
+
+	<string-array name="probe_temperature_threshold">
+        <item>0.0</item>
+        <item>1.0</item>
+        <item>2.0</item>
+        <item>5.0</item>
+   	</string-array>
+
+	<string-array name="probe_temperature_threshold_labels">
+        <item>None</item>
+        <item>1 degree</item>
+        <item>2 degrees</item>
+        <item>5 degrees</item>
+   	</string-array>
+
+	<string-array name="probe_humidity_threshold">
+        <item>0.0</item>
+        <item>1.0</item>
+        <item>5.0</item>
+        <item>10.0</item>
+   	</string-array>
+
+	<string-array name="probe_humidity_threshold_labels">
+        <item>None</item>
+        <item>1%</item>
+        <item>5%</item>
+        <item>10%</item>
+   	</string-array>
+	
+	<string-array name="http_upload_interval_values">
+        <item>0</item>
+        <item>30</item>
+        <item>60</item>
+        <item>300</item>
+        <item>600</item>
+        <item>1800</item>
+        <item>3600</item>
+   	</string-array>
+
+	<string-array name="http_upload_interval_labels">
+        <item>Default Adaptive Behavior</item>
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+   	</string-array>
+
+	<string-array name="streaming_jackson_upload_interval_values">
+        <item>30</item>
+        <item>60</item>
+        <item>300</item>
+        <item>600</item>
+        <item>1800</item>
+        <item>3600</item>
+   	</string-array>
+
+	<string-array name="streaming_jackson_upload_interval_labels">
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+   	</string-array>
+	
+	<string-array name="log_upload_interval_values">
+        <item>300</item>
+        <item>600</item>
+        <item>1800</item>
+        <item>3600</item>
+   	</string-array>
+
+	<string-array name="log_upload_interval_labels">
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+   	</string-array>
+	
+	<string-array name="http_upload_size_values">
+        <item>0</item>
+        <item>16384</item>
+        <item>32768</item>
+        <item>65536</item>
+        <item>131072</item>
+        <item>262114</item>
+        <item>524288</item>
+        <item>1048576</item>
+        <item>2097152</item>
+   	</string-array>
+
+	<string-array name="http_upload_size_labels">
+        <item>Default Adaptive Behavior</item>
+        <item>16 kilobytes</item>
+        <item>32 kilobytes</item>
+        <item>64 kilobytes</item>
+        <item>128 kilobytes</item>
+        <item>256 kilobytes</item>
+        <item>512 kilobytes</item>
+        <item>1 megabyte</item>
+        <item>2 megabytes</item>
+   	</string-array>
+
+	<string-array name="streaming_jackson_upload_size_values">
+        <item>16384</item>
+        <item>32768</item>
+        <item>65536</item>
+        <item>131072</item>
+        <item>262114</item>
+        <item>524288</item>
+        <item>1048576</item>
+        <item>2097152</item>
+   	</string-array>
+
+	<string-array name="streaming_jackson_upload_size_labels">
+        <item>16 kilobytes</item>
+        <item>32 kilobytes</item>
+        <item>64 kilobytes</item>
+        <item>128 kilobytes</item>
+        <item>256 kilobytes</item>
+        <item>512 kilobytes</item>
+        <item>1 megabyte</item>
+        <item>2 megabytes</item>
+   	</string-array>
+		
+   	<array name="sanity_check_classes">
+        <item>ConfigurationCheck</item>
+        <item>DiskSpaceCheck</item>
+        <item>LastUploadCheck</item>
+        <item>SchemeConfigCheck</item>
+        <!-- <item>ScriptDurationCheck</item> -->
+        <!-- <item>ScriptErrorCheck</item> -->
+        <!-- <item>ServerFailureCheck</item> -->
+        <item>UploadProgressCheck</item>
+        <item>GoogleServicesCheck</item>
+        <item>ByMinuteTriggerCheck</item>
+        <item>LogEventCheck</item>
+        <item>PebbleProbesCheck</item>
+        <item>Android50MemoryCheck</item>
+        <item>WifiEnabledCheck</item>
+        <item>ChargingRequiredCheck</item>
+        <item>MultipleUploadersEnabledCheck</item>
+        <item>LocationServicesEnabledCheck</item>
+        <item>BluetoothEnabledCheck</item>
+        <item>ProbeTriggerCheck</item>
+        <item>PermissionsCheck</item>
+        <item>BatteryOptimizationCheck</item>
+        <!-- <item>TestErrorCheck</item> -->
+        <!-- <item>TestWarningCheck</item> -->
+   	</array>
+
+   	<string-array name="sound_effect_labels">
+        <item>Default Ringtone</item>
+        <item>vision i: CRcv</item>
+        <item>vision i: CSnd</item>
+        <item>vision i: Error</item>
+        <item>vision i: New</item>
+        <item>vision i: Off</item>
+        <item>vision i: On</item>
+   	</string-array>
+   	
+   	<string-array name="sound_effect_values">
+        <item>0</item>
+        <item>sounds/vision-i/CRcv.m4a</item>
+        <item>sounds/vision-i/CSnd.m4a</item>
+        <item>sounds/vision-i/Error.m4a</item>
+        <item>sounds/vision-i/New.m4a</item>
+        <item>sounds/vision-i/Off.m4a</item>
+        <item>sounds/vision-i/On.m4a</item>
+   	</string-array>
+
+    <string-array name="probe_fitbit_retrospective_values">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>7</item>
+        <item>14</item>
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+    </string-array>
+
+    <string-array name="probe_fitbit_retrospective_labels">
+        <item>1 day</item>
+        <item>3 days</item>
+        <item>5 days</item>
+        <item>7 days</item>
+        <item>14 days</item>
+        <item>30 days</item>
+        <item>60 days</item>
+        <item>90 days</item>
+    </string-array>
+
+
+    <string-array name="probe_distance_frequency_values">
+        <item>600000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>14400000</item>
+        <item>43200000</item>
+        <item>86400000</item>
+   	</string-array>
+
+	<string-array name="probe_distance_frequency_labels">
+        <item>Every 10 minutes</item>
+        <item>Every 30 minutes</item>
+        <item>Every hour</item>
+        <item>Every 4 hours</item>
+        <item>Every 12 hours</item>
+        <item>Every day</item>
+   	</string-array>
+   	
+	<string-array name="google_places_types">
+	    <item>accounting</item>
+		<item>airport</item>
+		<item>amusement_park</item>
+		<item>aquarium</item>
+		<item>art_gallery</item>
+		<item>atm</item>
+		<item>bakery</item>
+		<item>bank</item>
+		<item>bar</item>
+		<item>beauty_salon</item>
+		<item>bicycle_store</item>
+		<item>book_store</item>
+		<item>bowling_alley</item>
+		<item>bus_station</item>
+		<item>cafe</item>
+		<item>campground</item>
+		<item>campground</item>
+		<item>car_dealer</item>
+		<item>car_rental</item>
+		<item>car_repair</item>
+		<item>car_wash</item>
+		<item>casino</item>
+		<item>cemetery</item>
+		<item>church</item>
+		<item>city_hall</item>
+		<item>clothing_store</item>
+		<item>convenience_store</item>
+		<item>courthouse</item>
+		<item>dentist</item>
+		<item>department_store</item>
+		<item>doctor</item>
+		<item>electrician</item>
+		<item>electronics_store</item>
+		<item>embassy</item>
+		<item>establishment</item>
+		<item>finance</item>
+		<item>fire_station</item>
+		<item>florist</item>
+		<item>food</item>
+		<item>funeral_home</item>
+		<item>furniture_store</item>
+		<item>gas_station</item>
+		<item>general_contractor</item>
+		<item>grocery_or_supermarket</item>
+		<item>gym</item>
+		<item>hair_care</item>
+		<item>hardware_store</item>
+		<item>health</item>
+		<item>hindu_temple</item>
+		<item>home_goods_store</item>
+		<item>hospital</item>
+		<item>insurance_agency</item>
+		<item>jewelry_store</item>
+		<item>laundry</item>
+		<item>lawyer</item>
+		<item>library</item>
+		<item>liquor_store</item>
+		<item>local_government_office</item>
+		<item>locksmith</item>
+		<item>lodging</item>
+		<item>meal_delivery</item>
+		<item>meal_takeaway</item>
+		<item>mosque</item>
+		<item>movie_rental</item>
+		<item>movie_theater</item>
+		<item>moving_company</item>
+		<item>museum</item>
+		<item>night_club</item>
+		<item>painter</item>
+		<item>park</item>
+		<item>parking</item>
+		<item>pet_store</item>
+		<item>pharmacy</item>
+		<item>physiotherapist</item>
+		<item>place_of_worship</item>
+		<item>plumber</item>
+		<item>police</item>
+		<item>post_office</item>
+		<item>real_estate_agency</item>
+		<item>restaurant</item>
+		<item>roofing_contractor</item>
+		<item>rv_park</item>
+		<item>school</item>
+		<item>shoe_store</item>
+		<item>shopping_mall</item>
+		<item>spa</item>
+		<item>stadium</item>
+		<item>storage</item>
+		<item>store</item>
+		<item>subway_station</item>
+		<item>synagogue</item>
+		<item>taxi_stand</item>
+		<item>train_station</item>
+		<item>travel_agency</item>
+		<item>university</item>
+		<item>veterinary_care</item>
+		<item>zoo</item>
+	</string-array>
+
+	<string-array name="feature_google_places_labels">
+        <item>100 meters</item>
+        <item>250 meters</item>
+        <item>500 meters</item>
+       	<item>1000 meters</item>
+       	<item>5000 meters</item>
+       	<item>10000 meters</item>
+	</string-array>
+
+	<string-array name="feature_google_places_values">
+        <item>100</item>
+        <item>250</item>
+        <item>500</item>
+       	<item>1000</item>
+       	<item>5000</item>
+       	<item>10000</item>
+   	</string-array>
+
+	<string-array name="contact_groups">
+        <item>Significant Other</item>
+        <item>Friend</item>
+        <item>Family</item>
+        <item>Acquaintance</item>
+       	<item>Coworker</item>
+       	<item>Customer</item>
+        <item>Supervisor</item>
+        <item>Caretaker</item>
+        <item>Service Provider</item>
+        <item>Religious Figure</item>
+       	<item>Stranger</item>
+  	</string-array>
+
+	<string-array name="place_groups">
+        <item>Home</item>
+        <item>Work</item>
+        <item>School</item>
+       	<item>Family</item>
+       	<item>In Transit</item>
+       	<item>Church or Other Place of Worship</item>
+       	<item>Dining</item>
+       	<item>Park</item>
+       	<item>Gym or Other Athletic Facility</item>
+       	<item>Shopping</item>
+       	<item>Other Recreational Facility</item>
+	</string-array>
+
+	<string-array name="wakelock_labels">
+        <item>None</item>
+        <item>Partial (CPU)</item>
+        <item>Dim (CPU, Screen)</item>
+        <item>Bright (CPU, Screen)</item>
+        <item>Full (CPU, Screen, Keyboard)</item>
+  	</string-array>
+
+	<string-array name="wakelock_values">
+        <item>-1</item>
+        <item>1</item>
+        <item>6</item>
+       	<item>10</item>
+       	<item>26</item>
+   	</string-array>
+   	
+	<string-array name="dialog_count_labels">
+        <item>1 dialog view</item>
+        <item>2 dialog views</item>
+        <item>3 dialog views</item>
+        <item>4 dialog views</item>
+		<item>5 dialog view</item>
+		<item>6 dialog view</item>
+ 	    <item>7 dialog view</item>
+ 	    <item>8 dialog view</item>
+		<item>Unlimited dialog views</item>
+  	</string-array>
+
+	<string-array name="dialog_count_values">
+        <item>1</item>
+        <item>2</item>
+       	<item>3</item>
+       	<item>4</item>
+        <item>5</item>
+        <item>6</item>
+       	<item>7</item>
+       	<item>8</item>
+       	<item>0</item>
+	</string-array>
+
+	<string-array name="probe_app_launch_frequency_labels">
+        <item>10 times per second</item>
+        <item>Every second</item>
+        <item>Every 5 seconds</item>
+        <item>Every 10 seconds</item>
+  	</string-array>
+
+	<string-array name="probe_app_launch_frequency_values">
+        <item>100</item>
+        <item>1000</item>
+       	<item>5000</item>
+       	<item>10000</item>
+	</string-array>
+   	
+   	<array name="hash_function_labels">
+        <item>MD5 (Insecure, Legacy Default)</item>
+        <item>SHA-2 (Secure, Recommended)</item>
+    </array>
+
+   	<array name="hash_function_values">
+        <item>MD5</item>
+        <item>SHA-256</item>
+    </array>
+
+    <string-array name="probe_fused_location_distance">
+        <item>0</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>400</item>
+        <item>800</item>
+        <item>1000</item>
+        <item>1600</item>
+        <item>3200</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>16000</item>
+    </string-array>
+
+    <string-array name="probe_fused_location_distance_labels">
+        <item>None</item>
+        <item>50 meters</item>
+        <item>100 meters</item>
+        <item>200 meters</item>
+        <item>400 meters</item>
+        <item>800 meters</item>
+        <item>1 kilometer</item>
+        <item>1.6 km (approx. 1 mile)</item>
+        <item>3.2 km</item>
+        <item>5 km</item>
+        <item>10 km</item>
+        <item>16.0 km (approx. 10 miles)</item>
+    </string-array>
+
+    <string-array name="probe_audio_feature_duration_values">
+        <item>1000</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>15000</item>
+        <item>30000</item>
+    </string-array>
+
+    <string-array name="probe_audio_feature_duration_labels">
+        <item>1 second</item>
+        <item>5 seconds</item>
+        <item>10 seconds</item>
+        <item>15 seconds</item>
+        <item>30 seconds</item>
+    </string-array>
+
+    <string-array name="probe_audio_feature_sample_rate_values">
+        <item>44100</item>
+        <item>22050</item>
+        <item>11025</item>
+        <item>8000</item>
+    </string-array>
+
+    <string-array name="probe_audio_feature_sample_rate_labels">
+        <item>44.1 kHz (CD Quality)</item>
+        <item>22.05 kHz (AM Radio Quality)</item>
+        <item>11.025 Khz (Voice Quality)</item>
+        <item>8 Khz (Telephone Quality)</item>
+    </string-array>
+
+    <string-array name="probe_nudge_interval_labels">
+        <item>5 seconds</item>
+        <item>10 seconds</item>
+        <item>15 seconds</item>
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>2 minutes</item>
+        <item>5 minutes</item>
+    </string-array>
+
+    <string-array name="probe_nudge_interval_values">
+        <item>5000</item>
+        <item>10000</item>
+        <item>15000</item>
+        <item>30000</item>
+        <item>60000</item>
+        <item>120000</item>
+        <item>300000</item>
+    </string-array>
+
+    <string-array name="streaming_jackson_buffer_duration_labels">
+        <item>1 minute</item>
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>4 hours</item>
+        <item>8 hours</item>
+        <item>12 hours</item>
+        <item>16 hours</item>
+        <item>24 hours</item>
+    </string-array>
+
+    <string-array name="streaming_jackson_buffer_duration_values">
+        <item>60000</item>
+        <item>300000</item>
+        <item>600000</item>
+        <item>900000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>7200000</item>
+        <item>14400000</item>
+        <item>28800000</item>
+        <item>43200000</item>
+        <item>57600000</item>
+        <item>86400000</item>
+    </string-array>
+
+    <string-array name="probe_transmit_mode_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="probe_transmit_mode_labels">
+        <item>Normal</item>
+        <item>Prioritized</item>
+        <item>On-Demand</item>
+    </string-array>
+
+    <string-array name="config_log_level_labels">
+        <item>Error</item>
+        <item>Warning</item>
+        <item>Info</item>
+        <item>Debug</item>
+    </string-array>
+
+    <string-array name="config_log_values">
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="launch_app_labels">
+        <item>Never</item>
+        <item>Midnight</item>
+        <item>3am</item>
+        <item>6am</item>
+    </string-array>
+
+    <string-array name="launch_app_values">
+        <item>-1</item>
+        <item>0</item>
+        <item>3</item>
+        <item>6</item>
+    </string-array>
+</resources>

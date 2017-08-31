@@ -1,0 +1,151 @@
+<html>
+    <head>
+        <title>{{ METHOD_NAME }} | Purple Robot</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../../css/bootstrap-theme.min.css">
+        <script src="../../../js/jquery-1.11.2.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <style>
+            h3.language_definition, h3.test_script
+            {
+                margin-top: 30px;
+            }
+
+            h4.code_example_label,  h4.code_arguments_label
+            {
+                margin-top: 20px;
+            }
+        </style>
+        <script>
+            $(document).ready(function()
+            {
+                var languages = ["JavaScript", "Scheme"];
+
+                $.each(languages, function(index, value)
+                {
+                    var language_id = "pre#" + value.toLowerCase() + "_example";
+
+                    if ($(language_id).length > 0)
+                    {
+                        $("select#test_language").append("<option value='" + value + "'>" + value + "</option>");
+                    }
+                });
+
+                $("select#test_language").change(function()
+                {
+                    var language = $("select#test_language").val();
+
+                    var payload = {};
+
+                    if (language != "---")
+                    {
+                        var original = $("pre#" + language.toLowerCase() + "_example").text();
+                        var script = null;
+
+                        // Only use highlighted text...
+                        if (window.getSelection)
+                            script = window.getSelection().toString().trim();
+                        else if (document.selection && document.selection.type != "Control")
+                            script = document.selection.createRange().text.trim();
+
+                        if (script != null && script.length > 0 && original.indexOf(script) != -1)
+                        {
+                            // Looks good...
+                        }
+                        else
+                            script = original;
+
+                        if (language == "JavaScript")
+                        {
+                            payload["command"] = "execute_script";
+                            payload["script"] = script;
+                        }
+                        else if (language == "Scheme")
+                        {
+                            payload["command"] = "execute_scheme";
+                            payload["source"] = script;
+                        }
+                    }
+                    else
+                    {
+                            payload["command"] = "execute_script";
+                            payload["script"] = "// Your script here...";
+                    }
+
+                    $("textarea#test_payload").val(JSON.stringify(payload, null, 2));
+                });
+
+                $("button#code_refresh").click(function(event)
+                {
+                    event.preventDefault();
+
+                    $("select#test_language").change();
+                });
+
+                $("form#test_form").submit(function(event)
+                {
+                    event.preventDefault();
+
+                    var data = {};
+                    data["json"] = $("textarea#test_payload").val();
+
+                    $.post("/json/submit", data, function(data, textStatus, jqXHR)
+                    {
+                        alert("Received response:\n\n" + JSON.stringify(data, null, 2));
+                    }, "json");
+                })
+            });
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <span class="navbar-brand">Purple Robot &#187; {{ METHOD_NAME }}</span>
+                </div>
+                <div id="navbar" class="navbar-right navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="../javascript/">JavaScript</a></li>
+                        <li><a href="../scheme/">Scheme</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div class="container" style="margin-top: 50px;">
+            <h1 style="margin-bottom: 30px;">{{ METHOD_NAME }}</h1>
+
+            {{ METHOD_DOCUMENTATION }}
+
+            <h3 class="test_script">Test Method</h3>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-xs-4">
+                    <label for="test_payload">HTTP POST Payload</label>
+                </div>
+                <div class="col-xs-8">
+                    <button id="code_refresh" class="btn btn-default pull-right" style="height: 33px;"><span class="glyphicon glyphicon-refresh"></span></button>
+                    <select id="test_language" class="form-control pull-right" style="margin-right: 10px; width: 160px;">
+                        <option value="---">Select a language&#8230;</option>
+                    </select>
+                </div>
+            </div>
+            <form id="test_form">
+                <div class="form-group">
+                    <textarea class="form-control" rows="8" id="test_payload"></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Send Payload</button>
+            </form>
+        </div>
+        <div class="container">
+            <div class="row" style="margin-top: 30px; margin-bottom: 30px; border-top: thin solid #CCCCCC;">
+                <div class="col-md-6" style="padding: 10px;">
+                    Purple Robot is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html">GPLv3</a>.
+                </div>
+                <div class="col-md-6 text-right" style="padding: 10px;">
+                    Questions or comments? <a href="mailto:c-karr@northwestern.edu">Send us an e-mail.</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<p>Displays a Purple Robot notification in the Android system bar that will launch the app with the package <code>packageName</code> when tapped.</p>
+
+<h4 class="code_arguments_label">Arguments</h4>
+
+<p><code>title</code> - Notification title.</p>
+<p><code>message</code> - Notification message.</p>
+<p><code>packageName</code> - Package name of the application to launch on tap.</p>
+
+<h4>Return Values</h4>
+
+<p>True if the notification was scheduled or fired successfully, false if an error occurred.</p>
+
+<h3 class="language_definition">JavaScript Example</h3>
+
+<pre id="javascript_example">PurpleRobot.showApplicationLaunchNotification("Tap here to launch Facebook.", "If you tap this notification, Facebook will open on your device (if installed).", "com.facebook.katana");</pre>
+
+<h3 class="language_definition">Scheme Example</h3>
+
+<pre id="scheme_example">(pr-show-application-launch-notification "Tap here to launch Facebook." "If you tap this notification, Facebook will open on your device (if installed)." "com.facebook.katana")</pre>
