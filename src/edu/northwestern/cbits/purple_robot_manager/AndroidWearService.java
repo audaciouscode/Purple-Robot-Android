@@ -168,13 +168,14 @@ public class AndroidWearService extends WearableListenerService
 
         config[9] = Byte.parseByte(prefs.getString(AndroidWearProbe.HEART_METER_FREQUENCY, ContinuousProbe.DEFAULT_FREQUENCY));
 
-
-        if (prefs.getBoolean(AndroidWearProbe.LIVEWELL_COUNTS_ENABLED, AndroidWearProbe.LIVEWELL_COUNTS_DEFAULT_ENABLED))
-            config[10] = 0x01;
-        else
-            config[10] = 0x00;
-
-        config[11] = Byte.parseByte(prefs.getString(AndroidWearProbe.LIVEWELL_BIN_SIZE, AndroidWearProbe.LIVEWELL_DEFAULT_BIN_SIZE));
+        config[10] = 0x00;
+        config[11] = 0x00;
+//        if (prefs.getBoolean(AndroidWearProbe.LIVEWELL_COUNTS_ENABLED, AndroidWearProbe.LIVEWELL_COUNTS_DEFAULT_ENABLED))
+//            config[10] = 0x01;
+//        else
+//            config[10] = 0x00;
+//
+//        config[11] = Byte.parseByte(prefs.getString(AndroidWearProbe.LIVEWELL_BIN_SIZE, AndroidWearProbe.LIVEWELL_DEFAULT_BIN_SIZE));
 
         return config;
     }

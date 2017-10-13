@@ -72,6 +72,8 @@ public class GyroscopeProbe extends Continuous3DProbe implements SensorEventList
 
     private static Handler _handler = null;
 
+    private boolean _isRefreshing = false;
+
     @Override
     public boolean getUsesThread()
     {
@@ -352,14 +354,24 @@ public class GyroscopeProbe extends Continuous3DProbe implements SensorEventList
 
                 final GyroscopeProbe me = this;
 
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        RealTimeProbeViewActivity.plotIfVisible(me.getTitleResource(), plotValues);
-                    }
-                });
+                if (this._isRefreshing == false) {
+                    this._isRefreshing = true;
 
-                t.start();
+                    Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            RealTimeProbeViewActivity.plotIfVisible(me.getTitleResource(), plotValues);
+
+                            me._isRefreshing = false;
+                            }
+                    });
+
+                    try {
+                        t.start();
+                    } catch (OutOfMemoryError e) {
+
+                    }
+                }
 
                 bufferIndex += 1;
 
@@ -440,7 +452,7 @@ public class GyroscopeProbe extends Continuous3DProbe implements SensorEventList
                         }
                     };
 
-                    t = new Thread(r);
+                    Thread t = new Thread(r);
                     t.start();
                 }
             }

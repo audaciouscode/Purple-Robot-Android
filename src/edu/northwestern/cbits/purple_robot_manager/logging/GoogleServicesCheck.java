@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Looper;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -40,6 +41,10 @@ public class GoogleServicesCheck extends SanityCheck
                 {
                     public void run()
                     {
+                        if (Looper.myLooper() == null) {
+                            Looper.prepare();
+                        }
+
                         Intent testIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.gms"));
 
                         PackageManager manager = context.getPackageManager();

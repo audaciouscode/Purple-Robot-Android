@@ -43,8 +43,8 @@ android {
         applicationId "edu.northwestern.cbits.purple_robot_manager"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 30000
-        versionName "3.0.0"
+        versionCode 30002
+        versionName "3.0.2"
     }
 
     dependencies {
@@ -101,7 +101,7 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.pro'
             signingConfig signingConfigs.release
-            debuggable true
+            debuggable false
 
 //            applicationVariants.all { variant ->
 //                variant.outputs.each { output ->

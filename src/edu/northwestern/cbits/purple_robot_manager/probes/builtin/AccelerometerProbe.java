@@ -71,6 +71,8 @@ public class AccelerometerProbe extends Continuous3DProbe implements SensorEvent
 
     private static Handler _handler = null;
 
+    private boolean _isRefreshing = false;
+
     @Override
     public String probeCategory(Context context)
     {
@@ -350,7 +352,7 @@ public class AccelerometerProbe extends Continuous3DProbe implements SensorEvent
         final double now = (double) System.currentTimeMillis();
 
         synchronized (this) {
-            if (this._currentValueBuffer == null) {
+            if (this._currentValueBuffer == null || this._currentSensorTimeBuffer == null || this._currentTimeBuffer == null || this._currentAccuracyBuffer == null) {
                 this._bufferCount += 1;
 
                 this._currentValueBuffer = new float[3][BUFFER_SIZE];
@@ -383,14 +385,24 @@ public class AccelerometerProbe extends Continuous3DProbe implements SensorEvent
 
                 final AccelerometerProbe me = this;
 
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        RealTimeProbeViewActivity.plotIfVisible(me.getTitleResource(), plotValues);
-                    }
-                });
+                if (this._isRefreshing == false) {
+                    this._isRefreshing = true;
 
-                t.start();
+                    Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            RealTimeProbeViewActivity.plotIfVisible(me.getTitleResource(), plotValues);
+
+                            me._isRefreshing = false;
+                        }
+                    });
+
+                    try {
+                        t.start();
+                    } catch (OutOfMemoryError e) {
+
+                    }
+                }
 
                 bufferIndex += 1;
 
@@ -488,7 +500,7 @@ public class AccelerometerProbe extends Continuous3DProbe implements SensorEvent
                         }
                     };
 
-                    t = new Thread(r);
+                    Thread t = new Thread(r);
                     t.start();
                 }
             }

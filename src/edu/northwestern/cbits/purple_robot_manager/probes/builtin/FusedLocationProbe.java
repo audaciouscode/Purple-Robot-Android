@@ -531,8 +531,13 @@ public class FusedLocationProbe extends Probe implements GoogleApiClient.Connect
 
     @Override
     public void onConnectionSuspended(int i) {
-        if (this._apiClient != null && this._apiClient.isConnected())
-            LocationServices.FusedLocationApi.removeLocationUpdates(this._apiClient, this);
+        if (this._apiClient != null && this._apiClient.isConnected()) {
+            try {
+                LocationServices.FusedLocationApi.removeLocationUpdates(this._apiClient, this);
+            } catch (IllegalStateException e) {
+
+            }
+        }
     }
 
     @Override
