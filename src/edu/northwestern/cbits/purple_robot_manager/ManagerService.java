@@ -113,14 +113,16 @@ public class ManagerService extends IntentService
         if (INCOMING_DATA_INTENT.equalsIgnoreCase(action)) {
             Bundle data = intent.getBundleExtra(Probe.PROBE_DATA);
 
-            UUID uuid = UUID.randomUUID();
-            data.putString(Probe.PROBE_GUID, uuid.toString());
+            if (data != null) {
+                UUID uuid = UUID.randomUUID();
+                data.putString(Probe.PROBE_GUID, uuid.toString());
 
-            LocalBroadcastManager localManager = LocalBroadcastManager.getInstance(this);
-            Intent probeIntent = new Intent(edu.northwestern.cbits.purple_robot_manager.probes.Probe.PROBE_READING);
-            probeIntent.putExtras(data);
+                LocalBroadcastManager localManager = LocalBroadcastManager.getInstance(this);
+                Intent probeIntent = new Intent(edu.northwestern.cbits.purple_robot_manager.probes.Probe.PROBE_READING);
+                probeIntent.putExtras(data);
 
-            localManager.sendBroadcast(probeIntent);
+                localManager.sendBroadcast(probeIntent);
+            }
         }
         else if (GOOGLE_PLAY_ACTIVITY_DETECTED.equalsIgnoreCase(action))
             ActivityDetectionProbe.activityDetected(this, intent);

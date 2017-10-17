@@ -72,6 +72,8 @@ public class LightProbe extends Continuous1DProbe implements SensorEventListener
 
     private static Handler _handler = null;
 
+    private boolean _isRefreshing = false;
+
     @Override
     public boolean getUsesThread()
     {
@@ -407,14 +409,24 @@ public class LightProbe extends Continuous1DProbe implements SensorEventListener
 
                 final LightProbe me = this;
 
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        RealTimeProbeViewActivity.plotIfVisible(me.getTitleResource(), plotValues);
-                    }
-                });
+                if (this._isRefreshing == false) {
+                    this._isRefreshing = true;
 
-                t.start();
+                    Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            RealTimeProbeViewActivity.plotIfVisible(me.getTitleResource(), plotValues);
+
+                            me._isRefreshing = false;
+                        }
+                    });
+
+                    try {
+                        t.start();
+                    } catch (OutOfMemoryError e) {
+
+                    }
+                }
 
                 bufferIndex += 1;
 
@@ -490,7 +502,8 @@ public class LightProbe extends Continuous1DProbe implements SensorEventListener
                             me._bufferCount -= 1;
                         }
                     };
-                    t = new Thread(r);
+
+                    Thread t = new Thread(r);
                     t.start();
                 }
             }

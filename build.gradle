@@ -43,8 +43,8 @@ android {
         applicationId "edu.northwestern.cbits.purple_robot_manager"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 30002
-        versionName "3.0.2"
+        versionCode 30003
+        versionName "3.0.3"
     }
 
     dependencies {
