@@ -41,4 +41,7 @@
     <string name="ihealth_oxygen_sv"></string>
     <string name="ihealth_weight_sc"></string>
     <string name="ihealth_weight_sv"></string>
+    
+    <string name="samsung_knox"></string>
+    <string name="samsung_knox_legacy"></string>
 </resources>
