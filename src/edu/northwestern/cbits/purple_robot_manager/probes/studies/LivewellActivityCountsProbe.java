@@ -188,10 +188,9 @@ public class LivewellActivityCountsProbe extends Probe implements SensorEventLis
 
         synchronized (this)
         {
-            if (this._lastBinStart == 0)
+            if (this._lastBinStart == 0) {
                 this._lastBinStart = now;
-            else if (now - this._lastBinStart > LivewellActivityCountsProbe.BIN_SIZE_DEFAULT)
-            {
+            } else if (now - this._lastBinStart > LivewellActivityCountsProbe.BIN_SIZE_DEFAULT) {
                 Sensor sensor = event.sensor;
 
                 Bundle data = new Bundle();
@@ -244,7 +243,7 @@ public class LivewellActivityCountsProbe extends Probe implements SensorEventLis
     {
         double count = bundle.getDouble(LivewellActivityCountsProbe.BUNDLE_ALL_DELTA);
         double numSamples = bundle.getDouble(LivewellActivityCountsProbe.BUNDLE_NUM_SAMPLES);
-        double duration = bundle.getDouble(LivewellActivityCountsProbe.BUNDLE_DURATION);
+        // double duration = bundle.getDouble(LivewellActivityCountsProbe.BUNDLE_DURATION);
 
         return String.format(context.getResources().getString(R.string.summary_livewell_pebble_probe), numSamples, count);
     }

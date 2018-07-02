@@ -600,11 +600,9 @@ public class StartActivity extends AppCompatActivity
     {
         super.onResume();
 
-        CrashManager.register(this, "7550093e020b1a4a6df90f1e9dde68b6", new CrashManagerListener()
-        {
+        CrashManager.register(this, "7550093e020b1a4a6df90f1e9dde68b6", new CrashManagerListener() {
             @Override
-            public boolean onCrashesFound()
-            {
+            public boolean shouldAutoUploadCrashes() {
                 return true;
             }
         });

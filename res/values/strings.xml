@@ -1,6 +1,6 @@
 <resources>
-    <string name="sensor_upload_url">https://app2.cbits.northwestern.edu/prImporter</string>
-    <string name="json_config_url">http://mohrlab.northwestern.edu/robot/</string>
+    <string name="sensor_upload_url"></string>
+    <string name="json_config_url"></string>
     <string name="app_name">Purple Robot</string>
 
     <string name="widget_title">Purple Robot Standard Widget</string>
@@ -1709,4 +1709,10 @@
     <string name="config_launch_app_message">Launches main screen once a day to mitigate unwanted app termination.</string>
 
     <string name="value_never">-1</string>
+
+    <string name="enterprise_device_admin">Purpe Robot</string>
+    <string name="enterprise_device_admin_description">Enables Purple Robot to manage device features on Samsung devices.</string>
+
+    <string name="diagnostic_knox_auth_required_title">Samsung Knox Permissions Required</string>
+    <string name="diagnostic_knox_auth_required">This app must be authorized with Knox in order to transmit data reliably.</string>
 </resources>

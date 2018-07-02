@@ -1,7 +1,9 @@
 package edu.northwestern.cbits.purple_robot_manager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -10,15 +12,25 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.app.Application;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 // import com.squareup.leakcanary.LeakCanary;
+
+import com.samsung.android.knox.EnterpriseDeviceManager;
+import com.samsung.android.knox.application.ApplicationPolicy;
+import com.samsung.android.knox.license.EnterpriseLicenseManager;
+import com.samsung.android.knox.license.KnoxEnterpriseLicenseManager;
 
 import edu.northwestern.cbits.purple_robot_manager.activities.settings.SettingsKeys;
 import edu.northwestern.cbits.purple_robot_manager.logging.LogManager;
@@ -66,6 +78,96 @@ public class PurpleRobotApplication extends Application
         }
 
 //        LeakCanary.install(this);
+
+        try {
+            BroadcastReceiver licenseReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    String action = intent.getAction();
+                    if (EnterpriseLicenseManager.ACTION_LICENSE_STATUS.equals(action)) {
+                        PurpleRobotApplication._context.unregisterReceiver(this);
+
+                        Bundle extras = intent.getExtras();
+                        String status = extras.getString("com.samsung.android.knox.intent.extra.LICENSE_STATUS");
+                        int err_code = extras.getInt(EnterpriseLicenseManager.EXTRA_LICENSE_ERROR_CODE);
+
+                        if (status != null && status.equals("success")) {
+                            EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(PurpleRobotApplication._context);
+
+                            ApplicationPolicy appPolicy = edm.getApplicationPolicy();
+
+                            if (appPolicy.getPackagesFromForceStopBlackList().contains("edu.northwestern.cbits.purple_robot_manager") == false) {
+                                List<String> list = new ArrayList<String>();
+
+                                list.add("edu.northwestern.cbits.purple_robot_manager");
+
+                                try {
+                                    boolean result = appPolicy.addPackagesToForceStopBlackList(list);
+
+                                    if (result) {
+                                        LogManager.getInstance(context).log("whitelisted_samsung_app", null);
+                                    } else {
+                                        // previous behaviour for device still prevails
+                                    }
+                                } catch (SecurityException ex) {
+                                    LogManager.getInstance(context).logException(ex);
+                                }
+                            }
+                        }
+                    } else if (KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS.equals(action)) {
+                        Bundle extras = intent.getExtras();
+                        String status = extras.getString(KnoxEnterpriseLicenseManager.EXTRA_LICENSE_STATUS);
+                        int err_code = extras.getInt(KnoxEnterpriseLicenseManager.EXTRA_LICENSE_ERROR_CODE);
+
+                        if (status.equals("success")) {
+                            EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(PurpleRobotApplication._context);
+
+                            ApplicationPolicy appPolicy = edm.getApplicationPolicy();
+
+                            if (appPolicy.getPackagesFromForceStopBlackList().contains("uk.ac.kcl.sleepsight") == false) {
+                                List<String> list = new ArrayList<String>();
+
+                                list.add("edu.northwestern.cbits.purple_robot_manager");
+
+                                try {
+                                    boolean result = appPolicy.addPackagesToForceStopBlackList(list);
+
+                                    if (result) {
+                                        LogManager.getInstance(context).log("whitelisted_samsung_app", null);
+                                   } else {
+                                        // previous behaviour for device still prevails
+                                    }
+                                } catch (SecurityException ex) {
+                                    LogManager.getInstance(context).logException(ex);
+                                }
+                            }
+                        }
+                    }
+
+                    PurpleRobotApplication._context.unregisterReceiver(this);
+                }
+            };
+
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS);
+            filter.addAction(EnterpriseLicenseManager.ACTION_LICENSE_STATUS);
+
+            PurpleRobotApplication._context.registerReceiver(licenseReceiver, filter);
+
+            try {
+                KnoxEnterpriseLicenseManager.getInstance(PurpleRobotApplication._context).activateLicense(PurpleRobotApplication._context.getString(R.string.samsung_knox));
+            } catch (NoClassDefFoundError ex) {
+
+            }
+
+            try {
+                EnterpriseLicenseManager.getInstance(PurpleRobotApplication._context).activateLicense(PurpleRobotApplication._context.getString(R.string.samsung_knox_legacy));
+            } catch (NoClassDefFoundError ex) {
+
+            }
+        } catch (RuntimeException ex) {
+
+        }
     }
 
     public static Context getAppContext()

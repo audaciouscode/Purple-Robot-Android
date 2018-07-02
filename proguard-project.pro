@@ -92,6 +92,7 @@
 -dontwarn okio.**
 -dontwarn javax.annotation.Nullable
 -dontwarn javax.annotation.ParametersAreNonnullByDefault
+-dontwarn okhttp3.**
 
 -dontnote jlib.**
 -dontnote android.net.http.*
@@ -107,6 +108,7 @@
 -dontnote edu.northwestern.cbits.xsi.**
 -dontnote net.hockeyapp.**
 -dontnote com.squareup.okhttp.**
+-dontnote okhttp3.**
 
 -keep class edu.northwestern.cbits.** { *; }
 -keep class jscheme.** { *; }
