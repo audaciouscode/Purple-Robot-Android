@@ -93,6 +93,7 @@
 -dontwarn javax.annotation.Nullable
 -dontwarn javax.annotation.ParametersAreNonnullByDefault
 -dontwarn okhttp3.**
+-dontwarn com.samsung.android.knox.**
 
 -dontnote jlib.**
 -dontnote android.net.http.*
