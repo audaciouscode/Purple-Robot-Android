@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 
+import java.util.List;
+
 import edu.northwestern.cbits.purple_robot_manager.R;
 import edu.northwestern.cbits.purple_robot_manager.activities.PermissionsActivity;
 
@@ -38,10 +40,14 @@ public class PermissionsCheck extends SanityCheck
             boolean missing = false;
 
             String[] required = context.getResources().getStringArray(R.array.required_permissions);
+            List<String> allPermissions = PermissionsActivity.allPermissions(context);
 
             for (String permission : required) {
-                if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED)
-                    missing = true;
+                if (allPermissions.contains(permission)) {
+                    if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                        missing = true;
+                    }
+                }
             }
 
             if (missing) {

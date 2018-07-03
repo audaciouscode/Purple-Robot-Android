@@ -7,18 +7,17 @@
         <item>android.permission.SYSTEM_ALERT_WINDOW</item>
         <item>android.permission.PACKAGE_USAGE_STATS</item>
         <item>com.google.android.permission.PROVIDE_BACKGROUND</item>
+        <item>com.samsung.android.knox.permission.KNOX_APP_MGMT</item>
+        <item>android.permission.sec.MDM_APP_MGMT</item>
     </string-array>
 
     <string-array name="required_permissions">
-        <item>android.permission.WRITE_EXTERNAL_STORAGE</item>
         <item>android.permission.GET_ACCOUNTS</item>
         <item>android.permission.INTERNET</item>
         <item>android.permission.WAKE_LOCK</item>
         <item>android.permission.RECEIVE_BOOT_COMPLETED</item>
         <item>android.permission.GET_ACCOUNTS</item>
-        <item>android.permission.GET_ACCOUNTS</item>
-        <item>android.permission.GET_ACCOUNTS</item>
-        <item>android.permission.GET_ACCOUNTS</item>
+        <item>android.permission.WRITE_EXTERNAL_STORAGE</item>
     </string-array>
 
     <string name="permission_android_permission_access_coarse_location">Access general location</string>

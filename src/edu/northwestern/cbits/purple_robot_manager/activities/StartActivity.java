@@ -35,6 +35,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -696,10 +697,14 @@ public class StartActivity extends AppCompatActivity
         boolean hasRequired = true;
 
         String[] required = this.getResources().getStringArray(R.array.required_permissions);
+        List<String> allPermissions = PermissionsActivity.allPermissions(this);
 
         for (String permission : required) {
-            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED)
-                hasRequired = false;
+            if (allPermissions.contains(permission)) {
+                if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                    hasRequired = false;
+                }
+            }
         }
 
         if (hasRequired == false)
