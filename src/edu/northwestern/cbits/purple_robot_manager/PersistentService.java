@@ -10,6 +10,8 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -71,15 +73,29 @@ public class PersistentService extends Service
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, StartActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        String NOTIFICATION_CHANNEL_ID = "edu.northwestern.cbits.purple_robot_manager";
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         builder.setContentTitle(title);
         builder.setContentText(message);
         builder.setContentIntent(contentIntent);
         builder.setSmallIcon(R.drawable.ic_note_normal);
         builder.setWhen(System.currentTimeMillis());
+        builder.setCategory(Notification.CATEGORY_SERVICE);
         builder.setColor(0xff4e015c);
 
         Notification note = builder.build();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelName = "Purple Robot";
+            NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            manager.createNotificationChannel(channel);
+
+            startForeground(SanityManager.NOTE_ID, note);
+        }
 
         this.startForeground(SanityManager.NOTE_ID, note);
 
@@ -204,8 +220,6 @@ public class PersistentService extends Service
 
         if (intent != null)
         {
-            Log.e("PURPLE-ROBOT", "PERSISTENT ON START COMMAND: " + intent.getAction());
-
             HashMap<String, Object> payload = new HashMap<>();
 
             if (intent.getAction() != null) {
@@ -296,10 +310,6 @@ public class PersistentService extends Service
         }
 
         WakeLockManager.getInstance(this).releaseWakeLock(lock);
-
-        if (intent != null) {
-            Log.e("PURPLE-ROBOT", "END PERSISTENT ON START COMMAND: " + intent.getAction());
-        }
 
         return Service.START_STICKY;
     }

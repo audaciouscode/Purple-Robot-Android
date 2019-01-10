@@ -339,7 +339,7 @@ public class LocationLabelActivity extends AppCompatActivity
         super.onPause();
 
         LocationCalibrationHelper.check(this);
-        SanityManager.getInstance(this).refreshState();
+        SanityManager.getInstance(this).refreshState(this);
     }
 
     public boolean onOptionsItemSelected(MenuItem item)

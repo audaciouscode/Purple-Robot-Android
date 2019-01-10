@@ -117,6 +117,14 @@
 -keep class org.mozilla.** { *; }
 -keep class org.scribe.** { *; }
 
+-keep class org.apache.http.** { *; }
+-keepclassmembers class org.apache.http.** {*;}
+-dontwarn org.apache.**
+
+-keep class android.net.http.** { *; }
+-keepclassmembers class android.net.http.** {*;}
+-dontwarn android.net.**
+
 # -keep class org.apache.commons.** { *; }
 
 # Allow obfuscation of android.support.v7.internal.view.menu.**

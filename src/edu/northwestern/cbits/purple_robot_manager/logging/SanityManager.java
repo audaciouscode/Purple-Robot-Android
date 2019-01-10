@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -60,12 +61,15 @@ public class SanityManager
         if (context != null)
             SanityManager._sharedInstance = new SanityManager(context.getApplicationContext());
 
+
+        SanityManager._sharedInstance._context = context.getApplicationContext();
+
         return SanityManager._sharedInstance;
     }
 
     @SuppressWarnings("rawtypes")
     @SuppressLint("NewApi")
-    public void refreshState()
+    public void refreshState(Context context)
     {
         String packageName = this.getClass().getPackage().getName();
 
@@ -103,12 +107,12 @@ public class SanityManager
 
                     if (error == SanityCheck.ERROR)
                         this.addAlert(SanityCheck.ERROR, check.name(this._context), check.getErrorMessage(),
-                                check.getAction(this._context));
+                                check.getAction(context));
                     else if (error == SanityCheck.WARNING)
                         this.addAlert(SanityCheck.WARNING, check.name(this._context), check.getErrorMessage(),
-                                check.getAction(this._context));
+                                check.getAction(context));
                     else
-                        this.clearAlert(check.name(this._context));
+                        this.clearAlert(check.name(context));
                 }
                 catch (InstantiationException | ClassCastException | IllegalAccessException e)
                 {
@@ -273,6 +277,19 @@ public class SanityManager
 
     public void runActionForAlert(String name)
     {
+        Runnable r = this._actions.get(name);
+
+        if (r != null)
+        {
+            Thread t = new Thread(r);
+            t.start();
+        }
+    }
+
+    public void runActionForAlert(String name, Activity activity)
+    {
+        this._context = activity;
+
         Runnable r = this._actions.get(name);
 
         if (r != null)

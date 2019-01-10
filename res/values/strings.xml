@@ -1710,9 +1710,12 @@
 
     <string name="value_never">-1</string>
 
-    <string name="enterprise_device_admin">Purpe Robot</string>
+    <string name="enterprise_device_admin">Purple Robot</string>
     <string name="enterprise_device_admin_description">Enables Purple Robot to manage device features on Samsung devices.</string>
 
     <string name="diagnostic_knox_auth_required_title">Samsung Knox Permissions Required</string>
     <string name="diagnostic_knox_auth_required">This app must be authorized with Knox in order to transmit data reliably.</string>
+
+    <string name="name_sanity_samsung_knox_optimization">Samsung Knox Optimization</string>
+    <string name="name_sanity_knox_optimization_error">This Samsung device must be registered with the included Knox management software to function reliably.</string>
 </resources>

@@ -31,7 +31,8 @@
 	<uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
    	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
 	<uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
-    <uses-permission android:name="com.google.android.permission.PROVIDE_BACKGROUND" />
+	<uses-permission android:name="com.google.android.permission.PROVIDE_BACKGROUND" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
 	<uses-permission android:name="android.permission.NFC" />
 	<uses-permission android:name="edu.northwestern.cbits.purple_robot_manager.FETCH_DATA" />
@@ -42,6 +43,10 @@
     <permission android:name="edu.northwestern.cbits.purple_robot_manager.FETCH_DATA" android:protectionLevel="normal" android:label="@string/permission_fetch_data" />
 	<uses-feature android:name="android.hardware.telephony" android:required="false" />
 	<uses-feature android:name="android.hardware.nfc" android:required="false" />
+	<uses-feature android:name="android.hardware.bluetooth" android:required="false" />
+	<uses-feature android:name="android.hardware.wifi" android:required="false" />
+	<uses-feature android:name="android.hardware.location" android:required="false" />
+	<uses-feature android:name="android.hardware.microphone" android:required="false" />
 	<uses-feature android:glEsVersion="0x00020000" android:required="true"/>
  	<application android:label="@string/app_name"
 		android:icon="@drawable/ic_launcher"
@@ -54,6 +59,7 @@
 		android:theme="@style/Theme.AppCompat">
 		<uses-library android:name="com.google.android.maps" android:required="false" />
 		<uses-library android:name="android.test.runner" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_places_browser_key"/>
@@ -118,7 +124,10 @@
 				<action android:name="purple_robot_manager_fire_triggers" />
 			</intent-filter>
 	    </service>
-		<service android:enabled="true" android:name="edu.northwestern.cbits.anthracite.LogService" android:exported="false">
+		<service android:enabled="true"
+			android:name="edu.northwestern.cbits.anthracite.LogService"
+			android:exported="false"
+			android:permission="android.permission.BIND_JOB_SERVICE">
 			<intent-filter>
 				<action android:name="edu.northwestern.cbits.purple_robot_manager.UPLOAD_LOGS_INTENT" />
 			</intent-filter>

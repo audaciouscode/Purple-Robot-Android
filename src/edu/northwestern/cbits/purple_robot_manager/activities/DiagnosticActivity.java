@@ -152,6 +152,8 @@ public class DiagnosticActivity extends AppCompatActivity
         LinearLayout errorList = (LinearLayout) this.findViewById(R.id.pr_error_list);
         errorList.removeAllViews();
 
+        final DiagnosticActivity me = this;
+
         final SanityManager sanity = SanityManager.getInstance(this);
 
         if (sanity.getErrorLevel() != SanityCheck.OK)
@@ -183,7 +185,7 @@ public class DiagnosticActivity extends AppCompatActivity
                     {
                         public void onClick(View view)
                         {
-                            sanity.runActionForAlert(errorKey);
+                            sanity.runActionForAlert(errorKey, me);
                         }
 
                     });
@@ -214,7 +216,7 @@ public class DiagnosticActivity extends AppCompatActivity
                     {
                         public void onClick(View view)
                         {
-                            sanity.runActionForAlert(errorKey);
+                            sanity.runActionForAlert(errorKey, me);
                         }
 
                     });
@@ -310,8 +312,6 @@ public class DiagnosticActivity extends AppCompatActivity
             ipAddressView.setText(ipAddress);
         }
 
-        final DiagnosticActivity me = this;
-
         permissionsStatus.setText(PermissionsActivity.status(this));
 
         switch(PermissionsActivity.statusCode(this))
@@ -332,6 +332,8 @@ public class DiagnosticActivity extends AppCompatActivity
                 me.startActivity(intent);
             }
         });
+
+        SanityManager.getInstance(this).refreshState(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu)

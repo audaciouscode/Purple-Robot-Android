@@ -3,6 +3,7 @@ package edu.northwestern.cbits.purple_robot_manager.output;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.net.Uri;
+import android.support.v4.content.FileProvider;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -72,7 +73,7 @@ public class BootstrapSiteExporter
             e.printStackTrace();
         }
 
-        return Uri.fromFile(exportedFile);
+        return FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", exportedFile);
     }
 
     private static void writeScriptDocumentation(Context context, ZipOutputStream out, String path, int templateType)
@@ -407,6 +408,6 @@ public class BootstrapSiteExporter
             e.printStackTrace();
         }
 
-        return Uri.fromFile(exportedFile);
+        return FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", exportedFile);
     }
 }

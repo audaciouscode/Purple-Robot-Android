@@ -222,6 +222,7 @@ public class RobotPreferenceListener implements Preference.OnPreferenceClickList
                         intent.putExtra(Intent.EXTRA_SUBJECT, me._context.getString(R.string.email_export_bootstrap_subject));
                         intent.putExtra(Intent.EXTRA_TEXT, me._context.getString(R.string.message_export_bootstrap_subject));
                         intent.putExtra(Intent.EXTRA_STREAM, path);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                         me._context.startActivity(intent);
                     }
@@ -254,6 +255,7 @@ public class RobotPreferenceListener implements Preference.OnPreferenceClickList
                         intent.putExtra(Intent.EXTRA_SUBJECT, me._context.getString(R.string.email_export_jekyll_subject));
                         intent.putExtra(Intent.EXTRA_TEXT, me._context.getString(R.string.message_export_jekyll_subject));
                         intent.putExtra(Intent.EXTRA_STREAM, path);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                         me._context.startActivity(intent);
                     }

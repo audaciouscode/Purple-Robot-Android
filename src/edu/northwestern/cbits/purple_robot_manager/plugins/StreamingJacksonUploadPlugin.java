@@ -262,8 +262,6 @@ public class StreamingJacksonUploadPlugin extends DataUploadPlugin
 
     public void processIntent(final Intent intent)
     {
-        Log.e("PURPLE-ROBOT", "START JACKSON INTENT: " + intent.getAction());
-
         final Context context = this.getContext().getApplicationContext();
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -399,8 +397,6 @@ public class StreamingJacksonUploadPlugin extends DataUploadPlugin
                 }
             }
         }
-
-        Log.e("PURPLE-ROBOT", "END JACKSON INTENT: " + intent.getAction());
     }
 
     private void closeOpenSession(Context context, JsonGenerator generator, int transmitMode) throws IOException

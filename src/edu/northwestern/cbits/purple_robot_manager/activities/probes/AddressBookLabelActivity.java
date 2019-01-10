@@ -164,7 +164,7 @@ public class AddressBookLabelActivity extends AppCompatActivity
         super.onPause();
 
         ContactCalibrationHelper.check(this);
-        SanityManager.getInstance(this).refreshState();
+        SanityManager.getInstance(this).refreshState(this);
     }
 
     public boolean onContextItemSelected(MenuItem item)

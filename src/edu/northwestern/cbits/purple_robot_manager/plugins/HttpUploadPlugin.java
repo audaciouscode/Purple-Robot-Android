@@ -70,6 +70,7 @@ import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.widget.Toast;
 import edu.emory.mathcs.backport.java.util.Arrays;
@@ -1169,18 +1170,19 @@ public class HttpUploadPlugin extends OutputPlugin
                                 email = account.name;
                             }
 
-                            Uri fileUri = Uri.fromFile(zipfile);
-
                             Intent sendIntent = new Intent(Intent.ACTION_SEND);
                             sendIntent.setType("application/zip");
                             sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Purple Robot Archives");
-                            sendIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
 
                             if (email != null) {
-                                String[] emails =
-                                        {email};
+                                String[] emails = {email};
                                 sendIntent.putExtra(Intent.EXTRA_EMAIL, emails);
                             }
+
+                            Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", zipfile);
+
+                            sendIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
+                            sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                             context.startActivity(sendIntent);
 

@@ -674,6 +674,7 @@
         <item>ProbeTriggerCheck</item>
         <item>PermissionsCheck</item>
         <item>BatteryOptimizationCheck</item>
+        <item>SamsungKnoxCheck</item>
         <!-- <item>TestErrorCheck</item> -->
         <!-- <item>TestWarningCheck</item> -->
    	</array>

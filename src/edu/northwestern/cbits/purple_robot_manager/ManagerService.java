@@ -133,7 +133,7 @@ public class ManagerService extends IntentService
                 @Override
                 public void run()
                 {
-                    SanityManager.getInstance(me).refreshState();
+                    SanityManager.getInstance(me).refreshState(me);
                 }
             };
 

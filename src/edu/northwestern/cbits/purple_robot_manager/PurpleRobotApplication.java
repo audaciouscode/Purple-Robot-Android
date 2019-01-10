@@ -22,6 +22,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -40,6 +42,8 @@ public class PurpleRobotApplication extends Application
 {
     private static Context _context;
     private static long _lastFix = 0;
+
+    private Handler mHandler = null;
 
     @Override
     public void onCreate()
@@ -84,17 +88,26 @@ public class PurpleRobotApplication extends Application
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     String action = intent.getAction();
+                    Log.e("PURPLE-ROBOT", "KNOX VALIDATE ACTION: " + action);
+
                     if (EnterpriseLicenseManager.ACTION_LICENSE_STATUS.equals(action)) {
+                        Log.e("PURPLE-ROBOT", "IN MAIN VALIDATE");
                         PurpleRobotApplication._context.unregisterReceiver(this);
 
                         Bundle extras = intent.getExtras();
                         String status = extras.getString("com.samsung.android.knox.intent.extra.LICENSE_STATUS");
                         int err_code = extras.getInt(EnterpriseLicenseManager.EXTRA_LICENSE_ERROR_CODE);
 
+                        Log.e("PURPLE-ROBOT", "KNOX VALIDATE STATUS: " + status + " -- " + err_code);
+
                         if (status != null && status.equals("success")) {
                             EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(PurpleRobotApplication._context);
 
                             ApplicationPolicy appPolicy = edm.getApplicationPolicy();
+
+                            for (String app : appPolicy.getPackagesFromForceStopBlackList()) {
+                                Log.e("PURPLE-ROBOT", "KNOX EXEMPT: " + app);
+                            }
 
                             if (appPolicy.getPackagesFromForceStopBlackList().contains("edu.northwestern.cbits.purple_robot_manager") == false) {
                                 List<String> list = new ArrayList<String>();
@@ -112,19 +125,34 @@ public class PurpleRobotApplication extends Application
                                 } catch (SecurityException ex) {
                                     LogManager.getInstance(context).logException(ex);
                                 }
+                            } else {
+                                Log.e("PURPLE-ROBOT", "KNOX APP ALREADY LISTED");
                             }
                         }
                     } else if (KnoxEnterpriseLicenseManager.ACTION_LICENSE_STATUS.equals(action)) {
+                        Log.e("PURPLE-ROBOT", "IN LEGACY VALIDATE");
+
                         Bundle extras = intent.getExtras();
+
+                        for (String key : extras.keySet()) {
+                            Log.e("PURPLE-ROBOT", "KNOX EXTRA[" + key + "]: " + extras.get(key));
+                        }
+
                         String status = extras.getString(KnoxEnterpriseLicenseManager.EXTRA_LICENSE_STATUS);
                         int err_code = extras.getInt(KnoxEnterpriseLicenseManager.EXTRA_LICENSE_ERROR_CODE);
+
+                        Log.e("PURPLE-ROBOT", "KNOX LEGACY VALIDATE: " + status + " -- " + err_code);
 
                         if (status.equals("success")) {
                             EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(PurpleRobotApplication._context);
 
                             ApplicationPolicy appPolicy = edm.getApplicationPolicy();
 
-                            if (appPolicy.getPackagesFromForceStopBlackList().contains("uk.ac.kcl.sleepsight") == false) {
+                            for (String app : appPolicy.getPackagesFromForceStopBlackList()) {
+                                Log.e("PURPLE-ROBOT", "KNOX EXEMPT: " + app);
+                            }
+
+                            if (appPolicy.getPackagesFromForceStopBlackList().contains("edu.northwestern.cbits.purple_robot_manager") == false) {
                                 List<String> list = new ArrayList<String>();
 
                                 list.add("edu.northwestern.cbits.purple_robot_manager");
@@ -140,11 +168,15 @@ public class PurpleRobotApplication extends Application
                                 } catch (SecurityException ex) {
                                     LogManager.getInstance(context).logException(ex);
                                 }
+                            } else {
+                                Log.e("PURPLE-ROBOT", "KNOX APP ALREADY LISTED");
                             }
                         }
                     }
 
                     PurpleRobotApplication._context.unregisterReceiver(this);
+
+                    Log.e("PURPLE-ROBOT", "KNOX LISTENER DONE");
                 }
             };
 
@@ -154,19 +186,29 @@ public class PurpleRobotApplication extends Application
 
             PurpleRobotApplication._context.registerReceiver(licenseReceiver, filter);
 
-            try {
-                KnoxEnterpriseLicenseManager.getInstance(PurpleRobotApplication._context).activateLicense(PurpleRobotApplication._context.getString(R.string.samsung_knox));
-            } catch (NoClassDefFoundError ex) {
+            this.mHandler = new Handler(Looper.getMainLooper());
 
-            }
+            this.mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Log.e("PURPLE-ROBOT", "START KNOX LICENSE VALIDATE");
+                    try {
+                        KnoxEnterpriseLicenseManager.getInstance(PurpleRobotApplication._context).activateLicense(PurpleRobotApplication._context.getString(R.string.samsung_knox));
+                    } catch (NoClassDefFoundError ex) {
+                        ex.printStackTrace();
+                    }
 
-            try {
-                EnterpriseLicenseManager.getInstance(PurpleRobotApplication._context).activateLicense(PurpleRobotApplication._context.getString(R.string.samsung_knox_legacy));
-            } catch (NoClassDefFoundError ex) {
-
-            }
+                    Log.e("PURPLE-ROBOT", "START KNOX LEGACY LICENSE VALIDATE");
+                    try {
+                        EnterpriseLicenseManager.getInstance(PurpleRobotApplication._context).activateLicense(PurpleRobotApplication._context.getString(R.string.samsung_knox_legacy));
+                    } catch (NoClassDefFoundError ex) {
+                        ex.printStackTrace();
+                    }
+                    Log.e("PURPLE-ROBOT", "END KNOX LICENSE VALIDATE");
+                }
+            });
         } catch (RuntimeException ex) {
-
+            ex.printStackTrace();
         }
     }
 
