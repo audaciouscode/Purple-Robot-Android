@@ -308,7 +308,12 @@ public class SanityManager
     @SuppressWarnings("unchecked")
     public Map<String, String> warnings()
     {
-        return (Map<String, String>) this._warnings.clone();
+        Map<String, String> clone = null;
+
+        synchronized (this._warnings) {
+            clone = (Map<String, String>) this._warnings.clone();
+        }
+        return clone;
     }
 
     public void clearAlert(String title)

@@ -1,3 +1,4 @@
+<!--suppress CheckTagEmptyBody -->
 <resources>
     <string name="sensor_upload_url"></string>
     <string name="json_config_url"></string>

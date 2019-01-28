@@ -219,7 +219,7 @@
 				android:resource="@xml/provider_paths"/>
 		</provider>
 
-        <!-- Goulding-only items
+        <!-- Goulding-only items -->
 		<receiver android:name=".util.KnoxReceiver"
 			android:description="@string/enterprise_device_admin_description"
 			android:label="@string/enterprise_device_admin"
@@ -228,11 +228,11 @@
 			<intent-filter>
 				<action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
 			</intent-filter>
-		</receiver>-->
+		</receiver>
 	</application>
-    <!-- Goulding Permissions
+    <!-- Goulding Permissions -->
+
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
-     -->
 </manifest>

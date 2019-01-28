@@ -47,6 +47,11 @@
     <string name="permission_com_google_android_gms_permission_activity_recognition">Use sensors to predict current activity (running, walking, etc.)</string>
     <string name="permission_com_google_android_providers_gsf_permission_read_gservices">Access Google Services details</string>
 
+    <string name="permission_android_permission_foreground_service">Run service in the foreground to improve data quality</string>
+    <string name="permission_android_permission_request_install_packages">Request to install packages</string>
+    <string name="permission_android_permission_send_sms">Send SMS messages and/or read SMS message logs</string>
+    <string name="permission_edu_northwestern_cbits_purple_robot_manager_fetch_data">Allow authorized apps to read Purple Robot data</string>
+
     <string name="rationale_raw_location_probe">The Raw Location probe needs permission to access your location to gather the information it is intended to collect.</string>
     <string name="rationale_fused_location_probe">The Fused Location probe needs permission to access your location to gather the information it is intended to collect.</string>
     <string name="rationale_pr_location_probe">The Location probe needs permission to access your location to gather the information it is intended to collect.</string>

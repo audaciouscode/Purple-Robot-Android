@@ -2,7 +2,7 @@
 
 buildscript {
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.3.0'
     }
 
     repositories {
@@ -23,6 +23,7 @@ repositories {
 android {
     sourceSets {
         main {
+            // manifest.srcFile 'UnlimitedManifest.xml'
             manifest.srcFile 'AndroidManifest.xml'
             java.srcDirs = ['src']
             resources.srcDirs = ['src']
@@ -47,8 +48,8 @@ android {
         applicationId "edu.northwestern.cbits.purple_robot_manager"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 30009
-        versionName "3.0.9"
+        versionCode 30010
+        versionName "3.0.10"
     }
 
     dependencies {

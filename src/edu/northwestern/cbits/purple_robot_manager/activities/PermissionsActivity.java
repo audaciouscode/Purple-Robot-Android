@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -24,6 +25,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import edu.northwestern.cbits.purple_robot_manager.Manifest;
 import edu.northwestern.cbits.purple_robot_manager.R;
 import edu.northwestern.cbits.purple_robot_manager.logging.LogManager;
 
@@ -98,6 +100,18 @@ public class PermissionsActivity extends AppCompatActivity {
                 for (String permission : info.requestedPermissions) {
 
                     boolean include = true;
+
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                        if ("android.permission.FOREGROUND_SERVICE".equals(permission)) {
+                            include = false;
+                        }
+                    }
+
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                        if ("android.permission.REQUEST_INSTALL_PACKAGES".equals(permission)) {
+                            include = false;
+                        }
+                    }
 
                     for (String systemPermission : systemOnly)
                         if (systemPermission.equals(permission))

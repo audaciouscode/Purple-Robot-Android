@@ -47,6 +47,12 @@ public class PermissionsCheck extends SanityCheck
                     if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
                         missing = true;
                     }
+
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                        if ("android.permission.FOREGROUND_SERVICE".equals(permission)) {
+                            missing = false;
+                        }
+                    }
                 }
             }
 

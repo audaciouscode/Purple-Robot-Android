@@ -8,19 +8,21 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
 import org.json.JSONArray;
@@ -42,7 +44,7 @@ import edu.northwestern.cbits.purple_robot_manager.logging.SanityManager;
 import edu.northwestern.cbits.purple_robot_manager.probes.Probe;
 import edu.northwestern.cbits.purple_robot_manager.probes.services.FoursquareProbe;
 
-public class FusedLocationProbe extends Probe implements GoogleApiClient.ConnectionCallbacks, LocationListener, GoogleApiClient.OnConnectionFailedListener {
+public class FusedLocationProbe extends Probe implements LocationListener {
     public static final String NAME = "edu.northwestern.cbits.purple_robot_manager.probes.builtin.FusedLocationProbe";
 
     public static final String LATITUDE = "LATITUDE";
@@ -78,10 +80,12 @@ public class FusedLocationProbe extends Probe implements GoogleApiClient.Connect
 
     private final HashMap<String, Boolean> _lastEnabled = new HashMap<>();
     private final HashMap<String, Integer> _lastStatus = new HashMap<>();
-    private GoogleApiClient _apiClient = null;
     private long _lastDistance = 0;
     private long _lastCache = 0;
     private Location _lastLocation = null;
+
+    private FusedLocationProviderClient _apiClient = null;
+    private LocationCallback _locationCallback = null;
 
     private long _probeEnabled = 0;
     private long _lastReading = 0;
@@ -320,7 +324,7 @@ public class FusedLocationProbe extends Probe implements GoogleApiClient.Connect
 
         if (super.isEnabled(context) && prefs.getBoolean(FusedLocationProbe.ENABLED, FusedLocationProbe.DEFAULT_ENABLED))
         {
-            if (ContextCompat.checkSelfPermission(context, "android.permission.ACCESS_FINE_LOCATION") == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(context, "android.permission.ACCESS_COARSE_LOCATION") == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
                 long now = System.currentTimeMillis();
 
@@ -339,31 +343,42 @@ public class FusedLocationProbe extends Probe implements GoogleApiClient.Connect
                     this._listening = false;
 
                     if (this._apiClient != null) {
-                        if (this._apiClient.isConnected()) {
-                            try {
-                                LocationServices.FusedLocationApi.removeLocationUpdates(this._apiClient, this);
-                                this._apiClient.disconnect();
-                            } catch (IllegalStateException e) {
-                                LogManager.getInstance(context).logException(e);
-                            } catch (NullPointerException e) {
-                                LogManager.getInstance(context).logException(e);
-                            }
-                        }
-
-                        this._apiClient = null;
+                        this._apiClient.removeLocationUpdates(this._locationCallback);
                     }
 
                     this._listening = true;
-                }
 
-                if (this._apiClient == null) {
-                    GoogleApiClient.Builder builder = new GoogleApiClient.Builder(this._context);
-                    builder.addConnectionCallbacks(this);
-                    builder.addOnConnectionFailedListener(this);
-                    builder.addApi(LocationServices.API);
+                    if (this._apiClient == null) {
+                        this._apiClient = LocationServices.getFusedLocationProviderClient(context);
+                    }
 
-                    this._apiClient = builder.build();
-                    this._apiClient.connect();
+                    final FusedLocationProbe me = this;
+
+                    if (this._locationCallback == null) {
+                        this._locationCallback = new LocationCallback() {
+                            public void onLocationAvailability(LocationAvailability locationAvailability) {
+
+                            }
+
+                            public void onLocationResult(LocationResult result) {
+                                for (Location location : result.getLocations()) {
+                                    me.onLocationChanged(location);
+                                }
+                            }
+                        };
+                    }
+
+                    final LocationRequest request = new LocationRequest();
+                    request.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+                    request.setInterval(freq);
+
+                    if (distance != 0) {
+                        request.setSmallestDisplacement(distance);
+                    }
+
+                    Log.e("PURPLE-ROBOT", "REQUESTING LOCATION: " + request);
+
+                    this._apiClient.requestLocationUpdates(request, this._locationCallback, Looper.getMainLooper());
                 }
 
                 String name = context.getString(R.string.name_location_services_check);
@@ -393,8 +408,7 @@ public class FusedLocationProbe extends Probe implements GoogleApiClient.Connect
 
             if (this._apiClient != null)
             {
-                this._apiClient.disconnect();
-                this._apiClient = null;
+                this._apiClient.removeLocationUpdates(this._locationCallback);
             }
         }
 
@@ -497,52 +511,6 @@ public class FusedLocationProbe extends Probe implements GoogleApiClient.Connect
         double longitude = bundle.getDouble(FusedLocationProbe.LONGITUDE);
 
         return String.format(context.getResources().getString(R.string.summary_location_probe), latitude, longitude);
-    }
-
-    @Override
-    public void onConnected(Bundle bundle)
-    {
-        final LocationRequest request = new LocationRequest();
-        request.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-
-        SharedPreferences prefs = Probe.getPreferences(this._context);
-
-        long freq = Long.parseLong(prefs.getString(FusedLocationProbe.FREQUENCY, Probe.DEFAULT_FREQUENCY));
-
-        request.setInterval(freq);
-
-        long distance = Long.parseLong(prefs.getString(FusedLocationProbe.DISTANCE, FusedLocationProbe.DEFAULT_DISTANCE));
-
-        if (distance != 0)
-            request.setSmallestDisplacement(distance);
-
-        try {
-            if (this._apiClient != null && this._apiClient.isConnected()) {
-                if (ActivityCompat.checkSelfPermission(this._context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this._context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    LocationServices.FusedLocationApi.requestLocationUpdates(this._apiClient, request, this, this._context.getMainLooper());
-                }
-            }
-        }
-        catch (IllegalStateException e)
-        {
-            LogManager.getInstance(this._context).logException(e);
-        }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        if (this._apiClient != null && this._apiClient.isConnected()) {
-            try {
-                LocationServices.FusedLocationApi.removeLocationUpdates(this._apiClient, this);
-            } catch (IllegalStateException e) {
-
-            }
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        this._apiClient = null;
     }
 
     public static Map<String, String> databaseSchema()

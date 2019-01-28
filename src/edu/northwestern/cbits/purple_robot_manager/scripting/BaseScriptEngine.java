@@ -312,6 +312,7 @@ public abstract class BaseScriptEngine
                 // Create all-trusting host name verifier
                 HostnameVerifier allHostsValid = new HostnameVerifier()
                 {
+                    @SuppressLint("BadHostnameVerifier")
                     @Override
                     public boolean verify(String hostname, SSLSession session)
                     {
