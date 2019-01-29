@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "401488769879",
+    "firebase_url": "https://livewell-purple-robot.firebaseio.com",
+    "project_id": "livewell-purple-robot",
+    "storage_bucket": "livewell-purple-robot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401488769879:android:5b8320f559a106a3",
+        "android_client_info": {
+          "package_name": "edu.northwestern.cbits.purple_robot_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "CHANGEME.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "CHANGEME"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

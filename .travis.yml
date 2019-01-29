@@ -15,6 +15,7 @@ before_script:
 #   - echo no | android create avd --force --name test --target $ANDROID_TARGET --abi $ANDROID_ABI
 #   - emulator -avd test -no-skin -no-audio -no-window &
   - mv app/src/main/res/values/keys.xml-template app/src/main/res/values/keys.xml
+  - mv app/google-services.json-template app/google-services.json
 
 before_install:
   - wget http://services.gradle.org/distributions/gradle-5.1.1-bin.zip
