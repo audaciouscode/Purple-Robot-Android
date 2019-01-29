@@ -13,7 +13,7 @@
 
     <string name="instagram_consumer_key"></string>
     <string name="instagram_consumer_secret"></string>
-    
+
     <string name="twitter_consumer_key"></string>
     <string name="twitter_consumer_secret"></string>
 
@@ -41,7 +41,7 @@
     <string name="ihealth_oxygen_sv"></string>
     <string name="ihealth_weight_sc"></string>
     <string name="ihealth_weight_sv"></string>
-    
+
     <string name="samsung_knox"></string>
     <string name="samsung_knox_legacy"></string>
 </resources>

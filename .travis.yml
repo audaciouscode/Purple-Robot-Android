@@ -14,7 +14,7 @@ before_script:
   - cp empty.properties gradle.properties
 #   - echo no | android create avd --force --name test --target $ANDROID_TARGET --abi $ANDROID_ABI
 #   - emulator -avd test -no-skin -no-audio -no-window &
-  - mv res/values/keys.xml.template res/values/keys.xml
+  - mv app/src/main/res/values/keys.xml-template app/src/main/res/values/keys.xml
 
 before_install:
   - wget http://services.gradle.org/distributions/gradle-5.1.1-bin.zip

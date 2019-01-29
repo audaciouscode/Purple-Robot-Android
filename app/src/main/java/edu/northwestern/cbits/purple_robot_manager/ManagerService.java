@@ -30,7 +30,14 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import edu.northwestern.cbits.purple_robot_manager.activities.settings.SettingsKeys;
 import edu.northwestern.cbits.purple_robot_manager.config.LegacyJSONConfigFile;
@@ -544,6 +551,23 @@ public class ManagerService extends IntentService
         context.startService(nudgeIntent);
 
         SanityManager.getInstance(context);
+
+        Log.e("PURPLE-ROBOT", "FETCHING TOKEN");
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.e("PURPLE-ROBOT", "FETCHING TOKEN FAILED");
+
+                            return;
+                        }
+
+                        String token = task.getResult().getToken();
+
+                        PurpleRobotApplication.updateFirebaseDeviceToken(context, token);
+                    }
+                });
 
         ManagerService._checkSetup = true;
     }

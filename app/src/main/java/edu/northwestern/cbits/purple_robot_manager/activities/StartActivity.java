@@ -516,6 +516,8 @@ public class StartActivity extends AppCompatActivity
         LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
         broadcastManager.unregisterReceiver(this._receiver);
 
+        UpdateManager.unregister();
+
         super.onDestroy();
     }
 

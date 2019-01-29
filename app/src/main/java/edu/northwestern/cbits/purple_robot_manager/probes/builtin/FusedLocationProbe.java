@@ -337,10 +337,13 @@ public class FusedLocationProbe extends Probe implements LocationListener {
                 long distance = Long.parseLong(prefs.getString(FusedLocationProbe.DISTANCE, FusedLocationProbe.DEFAULT_DISTANCE));
 
                 if (this._lastFrequency != freq || this._listening == false || this._lastDistance != distance) {
+                    Log.e("PURPLE-ROBOT", "TEST: " + (this._lastFrequency != freq) + " == " + (this._listening == false) + " == " + (this._lastDistance != distance));
+
                     LocationCalibrationHelper.check(context);
 
                     this._lastFrequency = freq;
                     this._listening = false;
+                    this._lastDistance = distance;
 
                     if (this._apiClient != null) {
                         this._apiClient.removeLocationUpdates(this._locationCallback);

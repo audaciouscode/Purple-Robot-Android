@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -25,6 +26,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 // import com.squareup.leakcanary.LeakCanary;
@@ -42,6 +44,9 @@ import net.hockeyapp.android.ExceptionHandler;
 
 import edu.northwestern.cbits.purple_robot_manager.activities.settings.SettingsKeys;
 import edu.northwestern.cbits.purple_robot_manager.logging.LogManager;
+import edu.northwestern.cbits.purple_robot_manager.messaging.FirebasePushNotificationService;
+import edu.northwestern.cbits.purple_robot_manager.probes.Probe;
+import edu.northwestern.cbits.purple_robot_manager.probes.features.Feature;
 import edu.northwestern.cbits.xsi.XSI;
 
 public class PurpleRobotApplication extends Application
@@ -51,6 +56,29 @@ public class PurpleRobotApplication extends Application
 
     private Handler mHandler = null;
     private ANRWatchDog mWatchdog;
+
+    public static void updateFirebaseDeviceToken(Context context, String token) {
+        Log.e("PURPLE-ROBOT", "FIREBASE TOKEN: " + token);
+
+        double now = System.currentTimeMillis();
+
+        UUID uuid = UUID.randomUUID();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("PROBE", "edu.northwestern.cbits.purple_robot_manager.FirebaseToken");
+        bundle.putDouble("TIMESTAMP", now / 1000);
+        bundle.putBoolean("PRIORITY", true);
+        bundle.putString("token", token);
+        bundle.putString("GUID", uuid.toString());
+        bundle.putString(Feature.FEATURE_VALUE, token);
+        bundle.putString(Probe.PROBE_DISPLAY_NAME, "Firebase Messaging Token");
+
+        LocalBroadcastManager localManager = LocalBroadcastManager.getInstance(context);
+        Intent intent = new Intent(edu.northwestern.cbits.purple_robot_manager.probes.Probe.PROBE_READING);
+        intent.putExtras(bundle);
+
+        localManager.sendBroadcast(intent);
+    }
 
     @Override
     public void onCreate()
