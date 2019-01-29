@@ -29,10 +29,16 @@ import android.util.Log;
 
 // import com.squareup.leakcanary.LeakCanary;
 
+import com.github.anrwatchdog.ANRError;
+import com.github.anrwatchdog.ANRWatchDog;
 import com.samsung.android.knox.EnterpriseDeviceManager;
 import com.samsung.android.knox.application.ApplicationPolicy;
 import com.samsung.android.knox.license.EnterpriseLicenseManager;
 import com.samsung.android.knox.license.KnoxEnterpriseLicenseManager;
+
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.CrashManagerListener;
+import net.hockeyapp.android.ExceptionHandler;
 
 import edu.northwestern.cbits.purple_robot_manager.activities.settings.SettingsKeys;
 import edu.northwestern.cbits.purple_robot_manager.logging.LogManager;
@@ -44,11 +50,34 @@ public class PurpleRobotApplication extends Application
     private static long _lastFix = 0;
 
     private Handler mHandler = null;
+    private ANRWatchDog mWatchdog;
 
     @Override
     public void onCreate()
     {
         super.onCreate();
+
+        CrashManager.register(this, "7550093e020b1a4a6df90f1e9dde68b6", new CrashManagerListener() {
+            @Override
+            public boolean shouldAutoUploadCrashes() {
+                return true;
+            }
+        });
+
+        this.mWatchdog = new ANRWatchDog();
+        this.mWatchdog.setANRListener(new ANRWatchDog.ANRListener() {
+            @Override
+            public void onAppNotResponding(ANRError error) {
+                ExceptionHandler.saveException(error, Thread.currentThread(), new CrashManagerListener() {
+                    @Override
+                    public boolean shouldAutoUploadCrashes() {
+                        return true;
+                    }
+                });
+            }
+        });
+
+        this.mWatchdog.start();
 
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
