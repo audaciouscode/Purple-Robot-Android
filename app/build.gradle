@@ -94,6 +94,12 @@ android {
             signingConfig signingConfigs.release
             debuggable false
         }
+
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.pro'
+            debuggable true
+        }
     }
 
     apply plugin: 'com.google.gms.google-services'
